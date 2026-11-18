@@ -1,0 +1,32 @@
+/* ========================================================================= */
+/* CONTROL PASS - BIENVENIDA: VARIABLES Y ESTRUCTURA BASE                    */
+/* ========================================================================= */
+:root {
+    --verde-sena: #39A900;
+    --verde-sena-hover: #2e8b00;
+    --azul-sena: #00324D;
+    --blanco: #ffffff;
+    --borde: #cbd5e1;
+    --texto-oscuro: #1e293b;
+    --texto-suave: #64748b;
+    --radio-card: 20px;
+    --sombra-card: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body.bienvenida-body,
+.bienvenida-body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgba(0, 50, 77, 0.88), rgba(15, 23, 42, 0.92)), url('../../css/imagenes/fondoSena.png') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: var(--texto-oscuro);
+}

@@ -1,0 +1,6 @@
+/* =============================================================
+   ARCHIVO PRINCIPAL UNIFICADOR DE ESTILOS DEL PANEL ADMIN
+   ============================================================= */
+@import url('base.css');
+@import url('componentes.css');
+@import url('modales.css');

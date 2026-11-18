@@ -1,0 +1,524 @@
+/* =============================================================
+   MÓDULO: MODALES, FORMULARIOS Y VISORES DE FOTOS
+   ============================================================= */
+
+/* MODALES Y OVERLAYS DE CONFIRMACIÓN */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px 15px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.modal-content {
+    background: var(--blanco) !important;
+    opacity: 1 !important;
+    padding: 25px;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    position: relative;
+    z-index: 1001;
+}
+
+.modal-header-custom {
+    text-align: center;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.modal-title-sm,
+.modal-title-view {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--azul-oscuro);
+}
+
+.modal-title-dark {
+    margin: 0 0 10px 0;
+    color: var(--azul-oscuro);
+    text-align: center;
+}
+
+.modal-text-muted {
+    color: var(--gris-texto);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.modal-icon-lg {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.modal-alerta-box {
+    max-width: 400px !important;
+    text-align: center !important;
+    padding: 25px !important;
+    border-radius: 18px !important;
+}
+
+.modal-form-scroll,
+.modal-examinar-card {
+    max-width: 480px !important;
+    padding: 18px 22px !important;
+    border-radius: 18px !important;
+    max-height: 88vh !important;
+    overflow-y: auto !important;
+}
+
+.modal-form-scroll::-webkit-scrollbar,
+.modal-examinar-card::-webkit-scrollbar {
+    width: 8px;
+}
+.modal-form-scroll::-webkit-scrollbar-track,
+.modal-examinar-card::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+.modal-form-scroll::-webkit-scrollbar-thumb,
+.modal-examinar-card::-webkit-scrollbar-thumb {
+    background: var(--verde-sena);
+    border-radius: 10px;
+}
+
+/* FORMULARIOS EN MODAL */
+.form-group {
+    margin-bottom: 8px !important;
+}
+
+.form-group-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px !important;
+}
+
+.form-group-row > div { flex: 1; }
+
+.flex-1 { flex: 1 !important; }
+.flex-2 { flex: 2 !important; }
+
+.form-label-bold {
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: block;
+    color: var(--azul-oscuro);
+}
+
+.form-input {
+    width: 100%;
+    padding: 7px 10px !important;
+    border: 1px solid var(--border-color);
+    background-color: var(--fondo-suave);
+    border-radius: 8px;
+    margin-top: 2px !important;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem !important;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--verde-sena);
+}
+
+.input-password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-password-wrapper .form-input {
+    padding-right: 42px !important;
+}
+
+.btn-toggle-eye {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    user-select: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.svg-eye-icon {
+    color: var(--gris-texto);
+}
+
+.help-text {
+    display: block;
+    color: var(--gris-texto);
+    font-size: 0.75rem;
+    margin-top: 4px;
+    line-height: 1.3;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 14px !important;
+}
+
+.modal-mt-md { margin-top: 18px !important; }
+
+.btn-full-width {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 12px !important;
+}
+
+.modal-buttons-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.btn-flex-1 { flex: 1; }
+
+/* VISOR DE FOTOS Y SOPORTES */
+.avatar-view-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.avatar-oval-img {
+    width: 100px !important;
+    height: 125px !important;
+    border-radius: 50% / 40% !important;
+    object-fit: cover !important;
+    border: 4px solid var(--verde-sena) !important;
+    box-shadow: 0 6px 16px rgba(57, 169, 0, 0.25) !important;
+    background-color: var(--fondo-suave);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.avatar-user-name {
+    margin: 0 0 6px 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--azul-oscuro);
+}
+
+.avatar-badges {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.table-responsive-info {
+    margin-bottom: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.user-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+}
+
+.user-data-table th, 
+.user-data-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.user-data-table tr:last-child th,
+.user-data-table tr:last-child td {
+    border-bottom: none;
+}
+
+.user-data-table th {
+    color: var(--gris-texto);
+    font-weight: 600;
+    width: 42%;
+    background: #f8fafc;
+}
+
+.user-data-table td {
+    color: var(--azul-oscuro);
+    font-weight: 500;
+}
+
+.equipos-title {
+    margin: 14px 0 8px 0;
+    font-size: 0.9rem;
+    color: var(--azul-oscuro);
+    font-weight: 700;
+}
+
+.equipos-grid-compact {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+}
+
+.equipo-card-sm {
+    background: var(--fondo-suave);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 8px;
+    text-align: center;
+}
+
+.equipo-img-sm {
+    width: 100%;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    border: 1px solid var(--border-color);
+}
+
+/* VISOR DINÁMICO DE SOPORTES EN MODAL DE SOLICITUDES */
+.grid-soportes-container {
+    display: flex;
+    gap: 12px;
+    margin: 12px 0;
+    width: 100%;
+}
+
+.soporte-box {
+    flex: 1;
+    text-align: center;
+    min-width: 0;
+}
+
+.soporte-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--azul-oscuro);
+    margin-bottom: 6px;
+}
+
+.img-preview-soporte {
+    width: 100%;
+    max-height: 220px;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 1.5px solid var(--border-color);
+    background-color: var(--fondo-suave);
+}
+
+/* ESTILOS DEL MODAL VISOR DE FICHAS */
+.modal-ficha-visor {
+    max-width: 500px !important;
+}
+
+.visor-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.visor-header .modal-title-sm {
+    font-size: 1.2rem;
+    color: #1e293b;
+}
+
+.visor-estado-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.visor-numero-ficha {
+    font-size: 1.4rem;
+    color: #0f172a;
+    margin-bottom: 5px;
+}
+
+.badge-estado-ficha {
+    background: #dcfce7;
+    color: #15803d;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.visor-tabla-container {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.visor-tabla-detalles {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.visor-fila {
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.visor-fila-ultimo {
+    border-bottom: none;
+}
+
+.visor-label {
+    padding: 10px 0;
+    font-weight: 600;
+    color: #475569;
+    width: 40%;
+}
+
+.visor-valor {
+    padding: 10px 0;
+    color: #1e293b;
+    font-weight: 500;
+}
+
+.visor-valor-bold {
+    font-weight: 600;
+}
+
+.visor-acciones {
+    text-align: center;
+}
+
+/* =============================================================
+   DISEÑO PROFESIONAL: ÁREA DE RESPUESTA A TICKETS
+   ============================================================= */
+#form-responder-ticket .input-group,
+#form-responder-ticket div[class*="input-group"] {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+#form-responder-ticket .form-label-bold {
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    color: var(--azul-oscuro) !important;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+#form-responder-ticket .text-red {
+    color: #ef4444 !important;
+    font-weight: 700;
+}
+
+#ticket-respuesta-admin,
+#form-responder-ticket textarea {
+    width: 100% !important;
+    min-height: 120px !important;
+    padding: 12px 16px !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 0.9rem !important;
+    color: #1e293b !important;
+    background-color: #f8fafc !important;
+    border: 1.5px solid #cbd5e1 !important;
+    border-radius: 12px !important;
+    outline: none !important;
+    resize: vertical !important;
+    line-height: 1.5 !important;
+    transition: all 0.2s ease-in-out !important;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+}
+
+#ticket-respuesta-admin:focus,
+#form-responder-ticket textarea:focus {
+    background-color: #ffffff !important;
+    border-color: var(--verde-sena, #39A900) !important;
+    box-shadow: 0 0 0 4px rgba(57, 169, 0, 0.12), inset 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+}
+
+#ticket-respuesta-admin::placeholder,
+#form-responder-ticket textarea::placeholder {
+    color: #94a3b8 !important;
+    font-weight: 400 !important;
+}
+
+#form-responder-ticket .modal-actions {
+    display: flex !important;
+    gap: 12px !important;
+    margin-top: 20px !important;
+}
+
+#form-responder-ticket .modal-actions button {
+    flex: 1 !important;
+    padding: 10px 16px !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+/* RESPONSIVE DESIGN MODALES */
+@media (max-width: 600px) {
+    .form-group-row,
+    .grid-soportes-container { 
+        flex-direction: column; 
+    }
+}
+/* =============================================================
+   MODAL DE IMPORTACIÓN DE EXCEL (AISLADO Y PROFESIONAL)
+   ============================================================= */
+
+.modal-importar-box {
+    padding: 30px !important;
+    border-radius: 20px !important;
+}
+
+/* El contenedor del mensaje de éxito/error */
+.alerta-importar {
+    display: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.alerta-importar.exito {
+    background-color: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.alerta-importar.error {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}

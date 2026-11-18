@@ -1,0 +1,57 @@
+/* ========================================================================= */
+/* CONTROL PASS - LOGIN: VARIABLES, RESET Y ESTRUCTURA GENERAL               */
+/* ========================================================================= */
+
+:root {
+    --verde-sena: #39A900;
+    --verde-sena-hover: #2e8b00;
+    --azul-sena: #00324D;
+    --azul-oscuro: #00324D;
+    --blanco: #ffffff;
+    --borde: #cbd5e1;
+    --border-color: #cbd5e1;
+    --texto-oscuro: #1e293b;
+    --texto-suave: #64748b;
+    --gris-texto: #64748b;
+    --radio-card: 12px;
+    --radio-input: 6px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: #d2dbe7; /* Fondo pastel exacto cambiado */
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-body::before {
+    display: none;
+}
+
+.login-container {
+    background: var(--blanco, #ffffff);
+    border-radius: var(--radio-card, 12px);
+    border: 1px solid var(--borde, #e2e8f0);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    display: flex;
+    width: 100%;
+    max-width: 950px;
+    overflow: hidden;
+    min-height: 580px;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .login-container { flex-direction: column; }
+}

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ControlPass - SENA CIDT</title>
+    
+    <!-- FAVICON -->
+    <link rel="icon" type="image/jpeg" href="./css/imagenes/logo.jpg">
+    
+    <!-- ESTILOS -->
+    <link rel="stylesheet" href="./css/paginas/index/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="login-body">
+
+    <div class="login-container">
+        <!-- Panel Izquierdo: Branding Institucional -->
+        <div class="login-brand">
+            <div class="brand-overlay"></div>
+            <div class="brand-content">
+                <div class="logo-circle">
+                    <img src="css/imagenes/logoSena.jpg" alt="Logo SENA" class="sena-logo-img">
+                </div>
+                <h2>ControlPass</h2>
+                <p>Sistema Integrado de Control de Acceso de Equipos y Herramientas</p>
+                <div class="brand-badge">Centro Industrial y del Desarrollo Tecnológico</div>
+            </div>
+        </div>
+
+        <!-- Panel Derecho: Formulario Autenticación -->
+        <div class="login-form-area">
+            <div class="form-overlay"></div>
+            <div class="form-content">
+                <div class="form-header">
+                    <div class="security-badge">
+                        <span>Acceso Seguro CIDT</span>
+                    </div>
+                    <h3>Autenticación de <span>Usuarios</span></h3>
+                    <p>Ingrese sus credenciales registradas para acceder a la plataforma ControlPass</p>
+                    <div class="header-divider"></div>
+                </div>
+
+                <form id="form-login" class="login-form" method="POST">
+
+                    <div class="info-guidance-box" style="margin-bottom: 16px;">
+                        <span style="font-size: 1.1rem;">📌</span>
+                        <span><strong>Nota para aprendices:</strong> Su usuario y contraseña inicial corresponden a su <strong>número de documento</strong>.</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="usuario">Número de Identificación o Correo Electrónico</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="usuario" name="usuario" autocomplete="username" placeholder="1098765432 o correo@ejemplo.com" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group group-password-spacing">
+                        <label for="clave">Contraseña</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="clave" name="clave" autocomplete="current-password" placeholder="••••••••" required>
+                            <button type="button" id="toggle-clave" class="toggle-password-btn" aria-label="Mostrar u ocultar contraseña">
+                                <svg id="icono-ojo-login" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-eye-icon">
+                                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="password-guidance-msg">
+                            <span class="emoji-bulb">💡</span>
+                            <span>Tu contraseña debe tener entre 8-16 caracteres e incluye mínimo un número.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-options-row">
+                        <label class="remember-me-label">
+                            <input type="checkbox" id="recordar" name="recordar">
+                            <span>Recordar mis datos</span>
+                        </label>
+                        <a href="#" id="link-olvide-clave" class="forgot-password-link">¿Olvidó su contraseña?</a>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-submit-spacing">
+                        <span>Ingresar al Sistema</span>
+                        <span class="btn-arrow">→</span>
+                    </button>
+                </form>
+
+                <div class="form-footer">
+                    <p>¿No cuenta con registro o tiene problemas de acceso? <a href="vistas/registro.html?tab=soporte" class="register-link">Solicitar registro o soporte aquí</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE ALERTA PERSONALIZADA -->
+    <div id="modal-alerta" class="modal-overlay modal-hidden" role="dialog" aria-modal="true">
+        <div class="modal-content modal-alerta-box">
+            <div id="alerta-icono" class="modal-icon-lg">⚠️</div>
+            <h3 id="alerta-titulo" class="modal-title-dark">Atención</h3>
+            <p id="alerta-mensaje" class="modal-text-muted"></p>
+            <button type="button" id="btn-cerrar-alerta" class="btn-primary btn-sena-green">Entendido</button>
+        </div>
+    </div>
+
+    <!-- MODAL DE RECUPERACIÓN EN 3 PASOS -->
+    <div id="modal-recuperar" class="modal-overlay modal-hidden modal-z-high" role="dialog" aria-modal="true" aria-labelledby="titulo-recuperacion">
+        <div class="modal-content modal-alerta-box modal-width-md">
+
+            <!-- PASO 1: SOLICITAR CÓDIGO -->
+            <div id="recuperacion-paso-1" class="recuperacion-paso">
+                <div class="modal-icon-lg">🔑</div>
+                <h3 id="titulo-recuperacion" class="modal-title-dark">Recuperación de Contraseña</h3>
+                <p class="modal-text-muted modal-mb-lg">
+                    Ingrese su correo electrónico registrado o número de documento para recibir un código de recuperación de 6 dígitos.
+                </p>
+                
+                <form id="form-recuperar" style="width: 100%;">
+                    <div class="input-group text-left modal-mb-md" style="width: 100%;">
+                        <input type="text" id="correo-recuperar" class="form-input-clean" placeholder="Ej. 1098765432 o correo@ejemplo.com" required>
+                        <small id="error-recuperar" style="display: none; color: #ef4444; font-size: 0.8rem; font-weight: 500; margin-top: 6px; text-align: left;">
+                            ⚠️ Ingrese un documento o correo válido.
+                        </small>
+                    </div>
+
+                    <div class="modal-buttons-row">
+                        <button type="submit" id="btn-enviar-recuperacion" class="btn-primary btn-sena-green btn-flex-1">Enviar código</button>
+                        <button type="button" id="btn-cancelar-recuperacion" class="btn-secondary btn-flex-1">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- PASO 2: VERIFICAR CÓDIGO DE 6 DÍGITOS -->
+            <div id="recuperacion-paso-2" class="recuperacion-paso modal-hidden">
+                <div class="modal-icon-lg">🔐</div>
+                <h3 class="modal-title-dark">Verificar Código</h3>
+                <p class="modal-text-muted modal-mb-lg">
+                    Hemos enviado un código de 6 dígitos a su correo electrónico. Ingréselo a continuación para validar su identidad.
+                </p>
+
+                <form id="form-verificar-codigo" style="width: 100%;">
+                    <div class="input-group text-left modal-mb-md" style="width: 100%;">
+                        <input type="text" id="codigo-recuperacion" class="form-input-clean" placeholder="000000" maxlength="6" inputmode="numeric" required>
+                        <small id="error-codigo-recuperacion" style="display: none; color: #ef4444; font-size: 0.8rem; font-weight: 500; margin-top: 6px; text-align: left;">
+                            ⚠️ Ingrese el código de 6 dígitos.
+                        </small>
+                    </div>
+
+                    <div class="modal-buttons-row">
+                        <button type="submit" id="btn-verificar-codigo" class="btn-primary btn-sena-green btn-flex-1">Verificar código</button>
+                        <button type="button" id="btn-cancelar-codigo" class="btn-secondary btn-flex-1">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- PASO 3: CAMBIAR CONTRASEÑA -->
+            <div id="recuperacion-paso-3" class="recuperacion-paso modal-hidden">
+                <div class="modal-icon-lg">🔒</div>
+                <h3 class="modal-title-dark">Crear Nueva Contraseña</h3>
+                <p class="modal-text-muted modal-mb-lg">
+                    Código verificado. Ingrese su nueva contraseña de acceso.
+                </p>
+
+                <form id="form-nueva-clave" style="width: 100%;">
+                    <!-- NUEVA CONTRASEÑA CON OJO -->
+                    <div class="input-group text-left modal-mb-md" style="width: 100%;">
+                        <div class="input-wrapper">
+                            <input type="password" id="nueva-clave" class="form-input-clean" placeholder="Nueva contraseña" minlength="8" maxlength="16" required>
+                            <button type="button" id="toggle-nueva-clave" class="toggle-password-btn" aria-label="Mostrar u ocultar nueva contraseña">
+                                <svg id="icono-ojo-nueva" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-eye-icon">
+                                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- CONFIRMAR CONTRASEÑA CON OJO -->
+                    <div class="input-group text-left modal-mb-md" style="width: 100%;">
+                        <div class="input-wrapper">
+                            <input type="password" id="confirmar-clave" class="form-input-clean" placeholder="Confirmar nueva contraseña" minlength="8" maxlength="16" required>
+                            <button type="button" id="toggle-confirmar-clave" class="toggle-password-btn" aria-label="Mostrar u ocultar confirmación de contraseña">
+                                <svg id="icono-ojo-confirmar" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-eye-icon">
+                                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <small id="error-nueva-clave" style="display: none; color: #ef4444; font-size: 0.8rem; font-weight: 500; margin-top: 6px; text-align: left;">
+                            ⚠️ Las contraseñas no coinciden o son inválidas.
+                        </small>
+                    </div>
+
+                    <div class="modal-buttons-row">
+                        <button type="submit" id="btn-guardar-nueva-clave" class="btn-primary btn-sena-green btn-flex-1">Guardar contraseña</button>
+                        <button type="button" id="btn-cancelar-nueva-clave" class="btn-secondary btn-flex-1">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- AVISO DE COOKIES -->
+    <div id="cookie-banner" class="cookie-banner-sena modal-hidden">
+        <div class="cookie-content">
+            <p class="cookie-text">
+                En <strong>ControlPass</strong> utilizamos cookies y almacenamos datos personales (fotografía de rostro, documento y correo) para la seguridad del acceso. Al continuar, aceptas nuestra 
+                <a href="#" id="link-abrir-privacidad" class="cookie-link">Política de Privacidad y Tratamiento de Datos</a> (Ley 1581 de 2012).
+            </p>
+            <button type="button" id="btn-aceptar-cookies" class="btn-primary btn-sena-green btn-cookie-size">Aceptar y Continuar</button>
+        </div>
+    </div>
+
+    <!-- MODAL DE PRIVACIDAD -->
+    <div id="modal-privacidad" class="modal-overlay modal-hidden modal-z-high" role="dialog" aria-modal="true">
+        <div class="modal-content modal-form-scroll modal-max-width-lg">
+            <div class="modal-header-custom">
+                <h3 class="modal-title-dark">Política de Privacidad y Habeas Data</h3>
+            </div>
+            <div class="modal-body-text">
+                <p>
+                    De conformidad con la <strong>Ley 1581 de 2012</strong> y el Decreto 1377 de 2013 en Colombia, le informamos que al utilizar el sistema <strong>ControlPass</strong> (SENA CIDT), sus datos personales —incluyendo <strong>fotografía de rostro, número de identificación, correo electrónico, nombres y apellidos</strong>— serán recolectados y procesados.
+                </p>
+            </div>
+            <div class="modal-actions modal-mt-lg">
+                <button type="button" id="btn-cerrar-privacidad" class="btn-primary btn-sena-green">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+<script src="js/index_login/autenticacion.js?v=3.0"></script>
+<script src="js/index_login/recuperacion.js?v=3.0"></script>
+<script src="js/index_login/main.js?v=3.0"></script>
+
+</body>
+</html>

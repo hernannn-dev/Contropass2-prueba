@@ -1,0 +1,118 @@
+/* ========================================================================= */
+/* CONTROL PASS - LOGIN: VARIABLES, RESET Y ESTRUCTURA GENERAL               */
+/* ========================================================================= */
+
+:root {
+    --verde-sena: #39A900;
+    --verde-sena-hover: #2e8b00;
+    --azul-sena: #00324D;
+    --azul-oscuro: #00324D;
+    --blanco: #ffffff;
+    --borde: #cbd5e1;
+    --border-color: #cbd5e1;
+    --texto-oscuro: #1e293b;
+    --texto-suave: #64748b;
+    --gris-texto: #64748b;
+    --radio-card: 16px;
+    --radio-input: 8px;
+    --sombra-card: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body.login-body,
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: #cbd5e1 !important;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-body::before {
+    display: none;
+}
+
+/* Tarjeta Contenedora Principal (Fluida y óptima para 1080p) */
+.login-container {
+    background: var(--blanco, #ffffff);
+    border-radius: var(--radio-card, 16px);
+    border: 1px solid var(--borde, #cbd5e1);
+    box-shadow: var(--sombra-card);
+    display: flex;
+    width: 100%;
+    max-width: 1150px;
+    min-height: 620px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+/* Panel Izquierdo (Branding Institucional - 45% del ancho) */
+.login-brand {
+    width: 45%;
+    flex-shrink: 0;
+    position: relative;
+    /* Ruta corregida para subir desde css/paginas/index/ hasta la raíz y entrar a imagenes/ */
+    background: url('../../imagenes/fondoSena.png') center/cover no-repeat;
+    background-color: var(--azul-sena);
+    color: var(--blanco, #ffffff);
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Panel Derecho (Formulario - 55% del ancho) */
+.login-form-area {
+    width: 55%;
+    flex-grow: 1;
+    position: relative;
+    padding: 35px 40px 35px 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #ffffff;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.login-form-area::-webkit-scrollbar { width: 6px; }
+.login-form-area::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
+.login-form-area::-webkit-scrollbar-thumb { background: var(--verde-sena); border-radius: 10px; }
+
+/* ============================================================= */
+/* MEDIA QUERY RESPONSIVA (TABLETS Y CELULARES BAJO 992px)       */
+/* ============================================================= */
+@media screen and (max-width: 992px) {
+    body.login-body,
+    .login-body {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    .login-container {
+        flex-direction: column !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+    }
+
+    .login-brand {
+        width: 100% !important;
+        min-height: 240px;
+        padding: 30px 20px !important;
+    }
+
+    .login-form-area {
+        width: 100% !important;
+        padding: 25px 20px !important;
+        max-height: none !important;
+    }
+}

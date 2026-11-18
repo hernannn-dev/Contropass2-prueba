@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro y Soporte - ControlPass SENA CIDT</title>
+    
+    <!-- FAVICON -->
+    <link rel="icon" type="image/jpeg" href="../css/imagenes/logo.jpg">
+    
+    <!-- HOJA DE ESTILOS CON VERSIÓN ANTI-CACHÉ -->
+    <link rel="stylesheet" href="../css/paginas/registro/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="login-body">
+
+    <div class="login-container">
+        <!-- PANEL IZQUIERDO: BRANDING INSTITUCIONAL -->
+        <div class="login-brand">
+            <div class="brand-overlay"></div>
+            <div class="brand-content">
+                <div class="logo-circle">
+                    <img src="../css/imagenes/logoSena.jpg" alt="Logo SENA" class="sena-logo-img">
+                </div>
+                <h2>ControlPass</h2>
+                <p>Gestión de Solicitudes de Registro y Soporte de Acceso</p>
+                <div class="brand-badge">Centro Industrial y del Desarrollo Tecnológico</div>
+            </div>
+        </div>
+
+        <!-- PANEL DERECHO: FORMULARIOS -->
+        <div class="login-form-area">
+            <div class="form-overlay"></div>
+
+            <div class="form-content">
+                
+                <div class="form-header">
+                    <div class="security-badge">
+                        <span>Atención de Usuarios CIDT</span>
+                    </div>
+                    <h3>Solicitudes y <span>Soporte</span></h3>
+                    <p>Seleccione el tipo de trámite que requiere realizar en la plataforma</p>
+                    <div class="header-divider"></div>
+                </div>
+
+                <!-- PESTAÑAS DE NAVEGACIÓN -->
+                <div class="tab-buttons-row">
+                    <button type="button" id="tab-contratista" class="btn-tab btn-tab-active">
+                        Registro de Personal
+                    </button>
+                    <button type="button" id="tab-soporte" class="btn-tab">
+                        Ticket de Soporte
+                    </button>
+                </div>
+
+                <!-- FORMULARIO 1: REGISTRO DE PERSONAL -->
+                <form id="form-registro-contratista" class="login-form" method="POST" enctype="multipart/form-data" autocomplete="off">
+                    
+                    <div class="info-guidance-box">
+                        <span class="emoji-bulb">📌</span>
+                        <span>Complete sus datos personales y seleccione su tipo de vinculación para solicitar el alta de su cuenta.</span>
+                    </div>
+
+                    <!-- CAMPO IDENTIFICACIÓN CON VALIDACIÓN MÁXIMA DE 10 DÍGITOS -->
+                    <div class="input-group">
+                        <label for="reg-documento">Número de Identificación</label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="text" 
+                                id="reg-documento" 
+                                name="documento" 
+                                maxlength="10" 
+                                pattern="[0-9]{6,10}" 
+                                inputmode="numeric" 
+                                placeholder="Ej. 1098765432" 
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" 
+                                autocomplete="off"
+                                required>
+                        </div>
+                    </div>
+
+                    <!-- NOMBRES Y APELLIDOS SEPARADOS -->
+                    <div class="row-inputs-flex" style="display: flex; gap: 12px; width: 100%;">
+                        <div class="input-group" style="flex: 1;">
+                            <label for="reg-nombres">Nombres</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="reg-nombres" name="nombres" placeholder="Ej. Carlos Alberto" autocomplete="off" required>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="flex: 1;">
+                            <label for="reg-apellidos">Apellidos</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="reg-apellidos" name="apellidos" placeholder="Ej. Pérez Gómez" autocomplete="off" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="reg-correo">Correo Electrónico de Contacto</label>
+                        <div class="input-wrapper">
+                            <input type="email" id="reg-correo" name="correo" placeholder="correo@ejemplo.com" autocomplete="off" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="reg-rol">Tipo de Personal / Vinculación</label>
+                        <div class="input-wrapper">
+                            <select id="reg-rol" name="rol" class="form-input-clean select-custom" required>
+                                <option value="" disabled selected>Seleccione su tipo de vinculación...</option>
+                                <option value="instructor_planta">Instructor</option>
+                                <option value="administrativo">Personal Administrativo</option>
+                                <option value="instructor_contratista">Instructor contratista</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- CONTENEDOR DE FECHAS DE CONTRATO (OCULTO POR DEFECTO PARA INSTRUCTORES CONTRATISTAS) -->
+                    <div id="wrapper-fechas-contrato" class="input-group" style="display: none;">
+                        <div class="row-inputs-flex" style="display: flex; gap: 12px; width: 100%;">
+                            <div style="flex: 1;">
+                                <label for="reg-fecha-inicio" style="font-size: 0.82rem; font-weight: 600; color: #00324D; display: block; margin-bottom: 5px;">Fecha de Inicio de Contrato</label>
+                                <div class="input-wrapper">
+                                    <input type="date" id="reg-fecha-inicio" name="fecha_inicio_contrato" class="form-input-clean">
+                                </div>
+                            </div>
+                            <div style="flex: 1;">
+                                <label for="reg-fecha-fin" style="font-size: 0.82rem; font-weight: 600; color: #00324D; display: block; margin-bottom: 5px;">Fecha de Fin de Contrato</label>
+                                <div class="input-wrapper">
+                                    <input type="date" id="reg-fecha-fin" name="fecha_fin_contrato" class="form-input-clean">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECCIÓN DE ADJUNTAR IDENTIFICACIÓN CON BOTONES PROFESIONALES -->
+                    <div class="input-group" style="margin-top: 15px;">
+                        <label style="font-weight: 600; color: #00324D;">
+                            Verificación de Identidad <span style="color: #39A900;">*</span>
+                        </label>
+                        <p style="font-size: 0.78rem; color: #64748b; margin-bottom: 10px;">
+                            Adjunte <strong>al menos uno</strong> de los dos soportes para validar su perfil: foto de su rostro o foto de su documento.
+                        </p>
+
+                        <div class="adjuntos-grid">
+                            <!-- Adjunto Rostro (Llama a Instrucciones -> Cámara) -->
+                            <div class="adjunto-box" id="btn-abrir-instrucciones-rostro" style="cursor: pointer;">
+                                <div class="upload-label">
+                                    <span id="nombre-foto-rostro" class="upload-text">Tomar Foto del Rostro</span>
+                                </div>
+                                <input type="file" id="foto_rostro" name="foto_rostro" accept="image/png, image/jpeg, image/jpg" class="input-file-hidden" style="display: none;">
+                            </div>
+
+                            <!-- Adjunto Documento (Selección de archivo) -->
+                            <div class="adjunto-box">
+                                <label for="foto_documento" class="upload-label" style="cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                    <span class="upload-icon">🪪</span>
+                                    <span id="nombre-foto-doc" class="upload-text">Foto del Documento</span>
+                                </label>
+                                <input type="file" id="foto_documento" name="foto_documento" accept="image/png, image/jpeg, image/jpg, application/pdf" class="input-file-hidden" style="display: none;">
+                            </div>
+                        </div>
+                        
+                        <small id="error-archivos-obligatorios" style="display: none; color: #ef4444; font-size: 0.8rem; font-weight: 600; margin-top: 8px;">
+                            Debe tomar la foto de su rostro o adjuntar la foto de su documento para continuar.
+                        </small>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-submit-spacing">
+                        <span>Enviar Solicitud de Cuenta</span>
+                        <span class="btn-arrow">→</span>
+                    </button>
+                </form>
+
+                <!-- FORMULARIO 2: SOPORTE TÉCNICO APRENDICES (MODIFICADO) -->
+                <form id="form-ticket-aprendiz" class="login-form modal-hidden" method="POST" enctype="multipart/form-data" autocomplete="off">
+                    
+                    <div class="info-guidance-box">
+                        <span class="emoji-bulb">📌</span>
+                        <span>Los aprendices son pre-registrados en el sistema. Utilice este canal si presenta inconvenientes con su acceso.</span>
+                    </div>
+
+                    <!-- NÚMERO DE DOCUMENTO (LÍMITE MÁXIMO 10 DÍGITOS) -->
+                    <div class="input-group">
+                        <label for="ticket-documento">Número de Documento</label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="text" 
+                                id="ticket-documento" 
+                                name="documento" 
+                                maxlength="10" 
+                                pattern="[0-9]{6,10}" 
+                                inputmode="numeric" 
+                                placeholder="Ej. 1098765432" 
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" 
+                                autocomplete="off" 
+                                required>
+                        </div>
+                    </div>
+
+                    <!-- 2. CORREO ELECTRÓNICO REGISTRADO (SEPARADO) -->
+                    <div class="input-group">
+                        <label for="ticket-correo">Correo Electrónico Registrado</label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="email" 
+                                id="ticket-correo" 
+                                name="correo" 
+                                placeholder="correo@misena.edu.co" 
+                                autocomplete="off" 
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="ticket-tipo-falla">Tipo de Inconveniente</label>
+                        <div class="input-wrapper">
+                            <select id="ticket-tipo-falla" name="tipo_falla" class="form-input-clean select-custom" required>
+                                <option value="" disabled selected>Seleccione una opción...</option>
+                                <option value="no_registrado">No aparezco en la lista de aprendices</option>
+                                <option value="error_datos">Mis datos o correo están incorrectos</option>
+                                <option value="bloqueo_acceso">Mi cuenta se encuentra bloqueada</option>
+                                <option value="otro">Otro inconveniente</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="ticket-descripcion">Detalle de la Falla o Solicitud</label>
+                        <div class="input-wrapper">
+                            <textarea id="ticket-descripcion" name="descripcion" class="form-input-clean textarea-custom" rows="3" placeholder="Describa brevemente lo que sucede..." required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- 3. CAMPO PARA ADJUNTAR CAPTURA / FOTO DE EVIDENCIA -->
+                    <div class="input-group" style="margin-top: 10px;">
+                        <label style="font-weight: 600; color: #00324D;">
+                            Adjuntar Captura / Evidencia <span style="font-weight: normal; color: #64748b; font-size: 0.8rem;">(Opcional)</span>
+                        </label>
+                        <p style="font-size: 0.78rem; color: #64748b; margin-bottom: 8px;">
+                            Soporte visual de la falla en formato de imagen (JPG, PNG, WEBP - Máx 5MB).
+                        </p>
+                        
+                        <div class="adjuntos-grid">
+                            <div class="adjunto-box">
+                                <label for="ticket-evidencia" class="upload-label" style="cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                    <span class="upload-icon">📎</span>
+                                    <span id="nombre-evidencia-ticket" class="upload-text">Seleccionar Imagen de Evidencia</span>
+                                </label>
+                                <input type="file" id="ticket-evidencia" name="evidencia" accept="image/png, image/jpeg, image/jpg, image/webp" class="input-file-hidden" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-submit-spacing" style="margin-top: 15px;">
+                        <span>Generar Ticket de Soporte</span>
+                        <span class="btn-arrow">→</span>
+                    </button>
+                </form>
+
+                <div class="form-footer">
+                    <p>¿Ya cuenta con acceso a la plataforma? <a href="../index.html" class="register-link">Volver al Inicio de Sesión</a></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 1: INSTRUCCIONES PREVIAS (PANTALLA GUÍA) -->
+    <div id="modal-instrucciones-foto" class="modal-overlay modal-hidden" role="dialog" aria-modal="true">
+        <div class="modal-content modal-width-md">
+            <h3 class="modal-title-dark">¿Cómo tomar la foto de rostro?</h3>
+            <p class="modal-text-muted" style="margin-bottom: 15px !important;">
+                Siga estas recomendaciones para que su solicitud sea aprobada sin inconvenientes:
+            </p>
+
+            <div class="instrucciones-foto-list">
+                <div class="instruccion-item" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; text-align: left; background: #f8fafc; padding: 10px; border-radius: 8px;">
+                    <span class="instruccion-icon" style="font-size: 1.2rem;">💡</span>
+                    <span style="font-size: 0.85rem; color: #334155;">Asegúrese de estar en un lugar con <strong>buena iluminación</strong>.</span>
+                </div>
+                <div class="instruccion-item" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; text-align: left; background: #f8fafc; padding: 10px; border-radius: 8px;">
+                    <span class="instruccion-icon" style="font-size: 1.2rem;">🕶️</span>
+                    <span style="font-size: 0.85rem; color: #334155;">Retírese <strong>gafas oscuras, gorras o sombreros</strong>.</span>
+                </div>
+                <div class="instruccion-item" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; text-align: left; background: #f8fafc; padding: 10px; border-radius: 8px;">
+                    <span class="instruccion-icon" style="font-size: 1.2rem;">👤</span>
+                    <span style="font-size: 0.85rem; color: #334155;">Mire de frente a la cámara y <strong>centre su rostro en el óvalo</strong>.</span>
+                </div>
+            </div>
+
+            <div class="modal-buttons-row" style="margin-top: 20px; display: flex; gap: 10px;">
+                <button type="button" id="btn-entendido-camara" class="btn-primary btn-sena-green btn-flex-1">
+                    Entendido, abrir cámara
+                </button>
+                <button type="button" id="btn-cancelar-instrucciones" class="btn-secondary btn-flex-1">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: CÁMARA EN VIVO CON MÁSCARA Y ÓVALO FACIAL -->
+    <div id="modal-camara" class="modal-overlay modal-hidden" role="dialog" aria-modal="true">
+        <div class="modal-content modal-camara-box">
+            <h3 class="modal-title-dark" style="margin-bottom: 4px !important;">Captura de Rostro</h3>
+            <p class="modal-text-muted" style="margin-bottom: 14px !important;">
+                Alinee su rostro dentro del óvalo verde.
+            </p>
+
+            <!-- CONTENEDOR DEL VISOR -->
+            <div class="camara-viewfinder">
+                <video id="video-camara" autoplay playsinline muted></video>
+                <div id="oval-guia" class="oval-overlay"></div>
+                <canvas id="canvas-foto" style="display: none;"></canvas>
+            </div>
+
+            <!-- BOTONERA INFERIOR EN FILA -->
+            <div class="modal-buttons-row">
+                <button type="button" id="btn-capturar-foto" class="btn-primary btn-sena-green btn-flex-1">
+                    Tomar Foto
+                </button>
+                <button type="button" id="btn-cerrar-camara" class="btn-secondary btn-flex-1">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: ALERTAS DE SISTEMA -->
+    <div id="modal-alerta" class="modal-overlay modal-hidden" role="dialog">
+        <div class="modal-content modal-alerta-box">
+            <div id="alerta-icono" class="modal-icon-lg"></div>
+            <h3 id="alerta-titulo" class="modal-title-dark">Atención</h3>
+            <p id="alerta-mensaje" class="modal-text-muted"></p>
+            <button type="button" id="btn-cerrar-alerta" class="btn-primary btn-sena-green">Entendido</button>
+        </div>
+    </div>
+
+    <!--SCRIPTS -->
+    <script src="../js/registro/camara-analizador.js"></script>
+    <script src="../js/registro/formularios.js"></script>
+    <script src="../js/registro/main.js"></script>
+</body>
+</html>

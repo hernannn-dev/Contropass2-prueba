@@ -1,0 +1,15 @@
+# =========================================================================
+# CONFIGURACIÓN MAESTRA DE SEGURIDAD - CONTROLPASS SENA
+# Ubicación: sena-acceso-control/.htaccess
+# =========================================================================
+
+# 1. Prohibir el listado y exploración de carpetas
+Options -Indexes
+
+# 2. Redirigir cualquier error 403 (Prohibido) o 404 (No encontrado) a nuestro archivo vacío.
+# Al estar vacío, el navegador asumirá el control inmediato mostrando su pantalla nativa moderna.
+# api/.htaccess
+ErrorDocument 403 /Controlpass-repo/vistas/vacio.html
+ErrorDocument 404 /Controlpass-repo/vistas/vacio.html
+
+DirectoryIndex vistas/bienvenido.php

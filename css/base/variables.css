@@ -1,0 +1,19 @@
+:root {
+    /* Paleta Institucional SENA */
+    --verde-sena: #39A900;
+    --verde-sena-hover: #2e8800;
+    --azul-sena: #00324D;
+    --azul-sena-oscuro: #001a29;
+    
+    /* Colores Neutros y Estructura */
+    --gris-fondo: #F4F6F9;
+    --blanco: #FFFFFF;
+    --texto-oscuro: #2D3748;
+    --texto-suave: #718096;
+    --borde: #E2E8F0;
+    
+    /* Sombras y Bordes */
+    --sombra: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    --radio-card: 20px;
+    --radio-input: 10px;
+}

@@ -1,0 +1,6 @@
+/* ========================================================================= */
+/* ARCHIVO UNIFICADOR PRINCIPAL DE ESTILOS DEL MÓDULO DE REGISTRO           */
+/* ========================================================================= */
+@import url('base.css');
+@import url('componentes.css');
+@import url('modales.css');

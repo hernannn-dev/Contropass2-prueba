@@ -1,0 +1,651 @@
+/* ========================================================================= */
+/* CONTROL PASS - ESTILOS DEL MÓDULO DE LOGIN (CENTRADOS Y FONDOS SÓLIDOS)  */
+/* ========================================================================= */
+
+:root {
+    --verde-sena: #39A900;
+    --verde-sena-hover: #2e8b00;
+    --azul-sena: #00324D;
+    --azul-oscuro: #00324D;
+    --blanco: #ffffff;
+    --borde: #cbd5e1;
+    --border-color: #cbd5e1;
+    --texto-oscuro: #1e293b;
+    --texto-suave: #64748b;
+    --gris-texto: #64748b;
+    --radio-card: 12px;
+    --radio-input: 6px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: #d2dbe7; /* Fondo pastel exacto cambiado */
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-body::before {
+    display: none;
+}
+
+.login-container {
+    background: var(--blanco, #ffffff);
+    border-radius: var(--radio-card, 12px);
+    border: 1px solid var(--borde, #e2e8f0);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    display: flex;
+    width: 100%;
+    max-width: 950px;
+    overflow: hidden;
+    min-height: 580px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Panel Izquierdo: Branding SENA */
+.login-brand {
+    position: relative;
+    background: url('../imagenes/fondoSena.png') center/cover no-repeat;
+    background-color: var(--azul-sena);
+    color: var(--blanco, #ffffff);
+    width: 45%;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.45) 0%, rgba(15, 23, 42, 0.30) 100%);
+    z-index: 1;
+}
+
+.brand-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+}
+
+.logo-circle {
+    width: 95px;
+    height: 95px;
+    background: var(--blanco, #ffffff);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px auto;
+    padding: 12px;
+}
+
+.sena-logo-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* ========================================================================= */
+/* FUERZA EL TAMAÑO DE TEXTO CON !IMPORTANT                                  */
+/* ========================================================================= */
+
+/* Título principal "ControlPass" */
+.brand-content h2 {
+    font-size: 38px !important; 
+    font-weight: 700 !important;
+    margin-bottom: 10px;
+    color: var(--blanco);
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+/* Descripción del sistema */
+.brand-content p {
+    font-size: 15px !important; 
+    color: var(--blanco);
+    line-height: 1.4;
+    margin-bottom: 25px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Insignia del Centro Industrial */
+.brand-badge {
+    display: inline-block;
+    background: var(--verde-sena);
+    color: var(--blanco);
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 12px !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Panel Derecho: Formulario */
+.login-form-area {
+    flex: 1.1;
+    position: relative;
+    padding: 45px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffff;
+}
+
+.form-overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.80);
+    z-index: 1;
+}
+
+.form-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Encabezado */
+.form-header {
+    margin-bottom: 25px;
+}
+
+.security-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(57, 169, 0, 0.12);
+    color: var(--verde-sena-hover, #2e8b00);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.badge-icon {
+    font-size: 12px;
+}
+
+.form-header h3 {
+    font-size: 25px;
+    color: var(--azul-sena, #00324D);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+}
+
+.form-header h3 span {
+    color: var(--verde-sena, #39A900);
+}
+
+.form-header p {
+    font-size: 13px;
+    color: var(--texto-suave, #64748b);
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.header-divider {
+    width: 40px;
+    height: 3px;
+    background-color: var(--verde-sena, #39A900);
+    border-radius: 2px;
+}
+
+/* Entradas e Iconos */
+.input-group {
+    margin-bottom: 16px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--texto-oscuro, #1e293b);
+    margin-bottom: 6px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 12px 42px 12px 14px;
+    border: 1px solid var(--borde, #cbd5e1);
+    border-radius: var(--radio-input, 6px);
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-wrapper input:focus {
+    border-color: var(--verde-sena, #39A900);
+    box-shadow: 0 0 0 3px rgba(57, 169, 0, 0.15);
+}
+
+.group-password-spacing {
+    margin-bottom: 12px;
+}
+
+.toggle-password-btn {
+    position: absolute;
+    right: 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    transition: transform 0.1s ease;
+    z-index: 5;
+}
+
+.toggle-password-btn:active {
+    transform: scale(0.9);
+}
+
+.svg-eye-icon {
+    color: var(--gris-texto, #64748b);
+    pointer-events: none;
+}
+
+.password-guidance-msg {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    font-size: 0.78rem;
+    color: #64748b;
+}
+
+.emoji-bulb {
+    font-size: 0.9rem;
+}
+
+/* Opciones del Formulario */
+.form-options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 12px;
+}
+
+.remember-me-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--texto-oscuro, #1e293b);
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+}
+
+.remember-me-label input[type="checkbox"] {
+    accent-color: var(--verde-sena, #39A900);
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.forgot-password-link {
+    font-size: 12px;
+    color: var(--azul-sena, #00324D);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.forgot-password-link:hover {
+    color: var(--verde-sena, #39A900);
+    text-decoration: underline;
+}
+
+/* Botones Principales */
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--verde-sena, #39A900);
+    color: var(--blanco, #ffffff);
+    border: none;
+    border-radius: var(--radio-input, 6px);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--verde-sena-hover, #2e8b00);
+}
+
+.btn-submit-spacing {
+    margin-top: 15px;
+}
+
+/* Pie de Formulario */
+.form-footer {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid var(--borde, #e2e8f0);
+    font-size: 13px;
+    color: var(--texto-suave, #64748b);
+}
+
+.register-link {
+    color: var(--verde-sena, #39A900);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.register-link:hover {
+    color: var(--verde-sena-hover, #2e8b00);
+    text-decoration: underline;
+}
+
+/* ========================================================================= */
+/* ESTILOS DE MODALES Y ALERTAS (FONDO BLANCO SÓLIDO Y CENTRADO COMPLETO)   */
+/* ========================================================================= */
+.modal-overlay {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(15, 23, 42, 0.60) !important;
+    backdrop-filter: blur(5px);
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 10000 !important;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-hidden {
+    display: none !important;
+}
+
+.modal-z-high {
+    z-index: 10000 !important;
+}
+
+.modal-content {
+    background-color: var(--blanco) !important;
+    border-radius: 20px !important;
+    padding: 32px 28px !important;
+    width: 100% !important;
+    max-width: 440px !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22) !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    position: relative;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    animation: modalScale 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalScale {
+    from { transform: scale(0.92); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Alineación de los pasos internos del modal */
+.recuperacion-paso {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Ícono circular de emoji 100% centrado */
+.modal-icon-lg {
+    width: 64px !important;
+    height: 64px !important;
+    background-color: rgba(57, 169, 0, 0.12) !important;
+    color: var(--verde-sena) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 2rem !important;
+    line-height: 1 !important;
+    margin: 0 auto 16px auto !important;
+    border: 1px solid rgba(57, 169, 0, 0.2) !important;
+}
+
+.modal-title-dark {
+    font-size: 1.35rem !important;
+    font-weight: 700 !important;
+    color: var(--azul-oscuro) !important;
+    margin: 0 0 8px 0 !important;
+    letter-spacing: -0.3px;
+    width: 100%;
+}
+
+.modal-text-muted {
+    font-size: 0.88rem !important;
+    color: var(--gris-texto) !important;
+    line-height: 1.5 !important;
+    margin-bottom: 22px !important;
+    width: 100%;
+}
+
+.btn-sena-green {
+    background-color: var(--verde-sena) !important;
+    color: var(--blanco) !important;
+    border: none !important;
+}
+
+.btn-sena-green:hover {
+    background-color: var(--verde-sena-hover) !important;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: #f1f5f9 !important;
+    color: #475569 !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+.btn-secondary:hover {
+    background-color: #e2e8f0 !important;
+    color: #1e293b !important;
+}
+
+/* Utilidades para Modales */
+.modal-width-md { 
+    max-width: 420px !important; 
+}
+
+.modal-mb-lg { 
+    font-size: 0.9rem; 
+    margin-bottom: 20px; 
+}
+
+.modal-mb-md { 
+    margin-bottom: 15px; 
+}
+
+.text-left { 
+    text-align: left !important; 
+}
+
+.form-input-clean {
+    width: 100%;
+    padding: 12px 16px !important;
+    border: 1px solid var(--border-color) !important;
+    background-color: #f8fafc !important;
+    border-radius: 10px !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 0.9rem !important;
+    color: var(--azul-oscuro) !important;
+    outline: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.input-wrapper .form-input-clean {
+    padding-right: 42px !important;
+}
+
+.form-input-clean:focus {
+    border-color: var(--verde-sena) !important;
+    background-color: var(--blanco) !important;
+    box-shadow: 0 0 0 3px rgba(57, 169, 0, 0.15) !important;
+}
+
+.modal-buttons-row {
+    display: flex !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin-top: 8px;
+}
+
+.btn-flex-1 {
+    flex: 1 !important;
+    padding: 12px 16px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    border-radius: 10px !important;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif !important;
+    transition: all 0.2s ease;
+}
+
+/* Banner de Cookies */
+.cookie-banner-sena {
+    position: fixed !important;
+    bottom: 24px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 90% !important;
+    max-width: 980px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.15), 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+    border-top: 4px solid var(--verde-sena) !important;
+    z-index: 9999 !important;
+    padding: 16px 24px !important;
+    box-sizing: border-box !important;
+    animation: cookieSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cookieSlideUp {
+    from {
+        transform: translate(-50%, 40px);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+.cookie-content {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 20px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+}
+
+.cookie-text {
+    margin: 0 !important;
+    font-size: 0.86rem !important;
+    color: #334155 !important;
+    line-height: 1.5 !important;
+    flex: 1 !important;
+}
+
+.cookie-link {
+    color: var(--verde-sena) !important;
+    text-decoration: underline !important;
+    font-weight: 600 !important;
+    transition: color 0.2s ease !important;
+}
+
+.cookie-link:hover {
+    color: var(--verde-sena-hover) !important;
+}
+
+.btn-cookie-size {
+    padding: 10px 20px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+    width: auto !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 12px rgba(57, 169, 0, 0.25) !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+}
+
+.btn-cookie-size:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 16px rgba(57, 169, 0, 0.35) !important;
+}
+
+/* Modal Política de Privacidad */
+.modal-max-width-lg { 
+    max-width: 600px !important; 
+    max-height: 80vh; 
+    overflow-y: auto; 
+    text-align: left !important; 
+    align-items: flex-start !important;
+    padding: 25px !important; 
+}
+
+.modal-body-text { font-size: 0.88rem; color: #475569; line-height: 1.6; text-align: justify; margin: 15px 0; }
+.modal-mt-lg { margin-top: 20px; width: 100%; }
+
+@media (max-width: 768px) {
+    .login-container { flex-direction: column; }
+    .login-brand, .login-form-area { width: 100%; }
+    .form-options-row { flex-direction: column; gap: 10px; align-items: flex-start; }
+    .cookie-banner-sena { bottom: 15px !important; padding: 18px 20px !important; width: 92% !important; }
+    .cookie-content { flex-direction: column !important; text-align: center !important; gap: 14px !important; }
+    .btn-cookie-size { width: 100% !important; }
+}

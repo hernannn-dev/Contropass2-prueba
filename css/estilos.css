@@ -1,0 +1,12 @@
+/* 1. Archivos Base */
+@import url('base/variables.css');
+@import url('base/reset.css');
+
+/* 2. Componentes Reutilizables */
+@import url('componentes/botones.css');
+@import url('componentes/formularios.css');
+@import url('componentes/tarjetas.css');
+
+/* 3. Estilos por Página */
+@import url('paginas/login.css');
+@import url('paginas/paneles.css');

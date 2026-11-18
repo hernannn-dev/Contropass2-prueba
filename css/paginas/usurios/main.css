@@ -1,0 +1,12 @@
+/* ========================================================== */
+/* ORQUESTADOR PRINCIPAL CSS - MÓDULO DE USUARIOS             */
+/* ========================================================== */
+
+/* 1. Importar estilos base institucionales */
+@import url('base.css');
+
+/* 2. Importar componentes visuales, tablas y formularios */
+@import url('componentes.css');
+
+/* 3. Importar estilos específicos para modales y alertas */
+@import url('modales.css');

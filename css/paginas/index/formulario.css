@@ -1,0 +1,325 @@
+/* ========================================================================= */
+/* CONTROL PASS - LOGIN: BRANDING Y COMPONENTES DEL FORMULARIO               */
+/* ========================================================================= */
+
+.brand-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.35) 0%, rgba(15, 23, 42, 0.65) 100%);
+    z-index: 1;
+}
+
+.brand-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+}
+
+.logo-circle {
+    width: 105px;
+    height: 105px;
+    background: var(--blanco, #ffffff);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px auto;
+    padding: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.sena-logo-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.brand-content h2 {
+    font-size: 36px !important; 
+    font-weight: 700 !important;
+    margin-bottom: 8px;
+    color: var(--blanco);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.brand-content p {
+    font-size: 14px !important; 
+    color: var(--blanco);
+    line-height: 1.4;
+    margin-bottom: 25px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.brand-badge {
+    display: inline-block;
+    color: var(--blanco);
+    padding: 11px 24px;
+    border-radius: 30px;
+    font-size: 11px !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.form-overlay {
+    display: none;
+}
+
+.form-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+/* Encabezado del Formulario */
+.form-header {
+    margin-bottom: 16px;
+}
+
+.security-badge {
+    display: inline-block;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.badge-icon {
+    font-size: 12px;
+}
+
+.form-header h3 {
+    font-size: 26px;
+    color: var(--azul-sena, #00324D);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 4px;
+}
+
+.form-header h3 span {
+    color: var(--verde-sena, #39A900);
+}
+
+.form-header p {
+    font-size: 13px;
+    color: var(--texto-suave, #64748b);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.header-divider {
+    display: none;
+}
+
+/* Entradas e Iconos */
+.input-group {
+    margin-bottom: 14px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--texto-oscuro, #1e293b);
+    margin-bottom: 6px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* 🟢 CLASE REUTILIZABLE PARA CAMPOS LIMPIOS Y REDONDEADOS (.form-input-clean E INPUTS GENERALES) */
+.input-wrapper input,
+.form-input-clean,
+.form-input {
+    width: 100% !important;
+    padding: 12px 16px !important;
+    border: 1.5px solid var(--borde, #cbd5e1) !important;
+    border-radius: 10px !important;
+    font-size: 0.92rem !important;
+    font-family: 'Poppins', sans-serif !important;
+    outline: none !important;
+    background-color: #ffffff !important;
+    color: var(--texto-oscuro, #1e293b) !important;
+    transition: all 0.25s ease !important;
+    box-sizing: border-box !important;
+}
+
+/* Si tiene botón de ver contraseña a la derecha, le da espacio interno */
+.input-wrapper input {
+    padding-right: 48px !important;
+}
+
+/* Efecto Focus Verde SENA */
+.input-wrapper input:focus,
+.form-input-clean:focus,
+.form-input:focus {
+    border-color: var(--verde-sena, #39A900) !important;
+    box-shadow: 0 0 0 4px rgba(57, 169, 0, 0.15) !important;
+}
+
+.group-password-spacing {
+    margin-bottom: 12px;
+}
+
+.toggle-password-btn {
+    position: absolute;
+    right: 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    transition: transform 0.1s ease;
+    z-index: 5;
+}
+
+.toggle-password-btn:active {
+    transform: scale(0.9);
+}
+
+.svg-eye-icon {
+    color: var(--gris-texto, #64748b);
+    pointer-events: none;
+}
+
+.password-guidance-msg {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    font-size: 0.78rem;
+    color: #64748b;
+}
+
+.emoji-bulb {
+    font-size: 0.9rem;
+}
+
+/* Opciones del Formulario */
+.form-options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 12px;
+}
+
+.remember-me-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--texto-oscuro, #1e293b);
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+}
+
+.remember-me-label input[type="checkbox"] {
+    accent-color: var(--verde-sena, #39A900);
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.forgot-password-link {
+    font-size: 12px;
+    color: var(--azul-sena, #00324D);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.forgot-password-link:hover {
+    color: var(--verde-sena, #39A900);
+    text-decoration: underline;
+}
+
+/* Botón Principal */
+.btn-primary,
+.btn-sena-green {
+    width: 100%;
+    padding: 12px 20px !important;
+    background-color: var(--verde-sena, #39A900) !important;
+    color: var(--blanco, #ffffff) !important;
+    border: none !important;
+    border-radius: var(--radio-input, 10px) !important;
+    font-weight: 600 !important;
+    font-size: 0.92rem !important;
+    font-family: 'Poppins', sans-serif !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(57, 169, 0, 0.25) !important;
+    text-align: center;
+}
+
+.btn-primary:hover,
+.btn-sena-green:hover {
+    background-color: var(--verde-sena-hover, #2e8b00) !important;
+    transform: translateY(-1px);
+}
+
+.btn-submit-spacing {
+    margin-top: 15px;
+}
+
+/* Pie de Formulario */
+.form-footer {
+    text-align: center;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--borde, #e2e8f0);
+    font-size: 12.5px;
+    color: var(--texto-suave, #64748b);
+}
+
+.register-link {
+    color: var(--verde-sena, #39A900);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.register-link:hover {
+    color: var(--verde-sena-hover, #2e8b00);
+    text-decoration: underline;
+}
+
+.info-guidance-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-size: 0.8rem;
+    color: #274e13;
+    background-color: #f0fdf4;
+    border-left: 4px solid var(--verde-sena, #39A900);
+    padding: 10px 14px;
+    border-radius: 8px;
+    line-height: 1.4;
+    text-align: left;
+}
+
+@media screen and (max-width: 480px) {
+    .form-options-row { flex-direction: column; gap: 10px; align-items: flex-start; }
+}

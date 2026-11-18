@@ -1,0 +1,888 @@
+/* =============================================================
+   MÓDULO DE COMPONENTES: BOTONES, HERRAMIENTAS, TABLAS Y MODALES
+   ============================================================= */
+
+/* =============================================================
+   1. BOTONES DE ACCIÓN GENERAL (REGISTRAR, IMPORTAR, ACTUALIZAR)
+   ============================================================= */
+.btn-toggle-view, 
+.btn-primary,
+.toolbar-fichas button.btn-primary,
+#btn-registrar-ficha,
+#btn-importar-fichas,
+#btn-registrar-aprendiz,
+#btn-importar-aprendices,
+#btn-crear-usuario,
+#btn-actualizar-lista-solicitudes,
+#btn-actualizar-tickets,
+.btn-actualizar-tickets,
+#btn-abrir-modal-ficha,
+#btn-importar-fichas-excel,
+#btn-abrir-modal-aprendiz,
+#btn-importar-aprendices-excel {
+    background-color: var(--verde-sena) !important;
+    color: var(--blanco) !important;
+    border: none !important;
+    padding: 10px 18px !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    font-family: 'Poppins', sans-serif !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(57, 169, 0, 0.25) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.btn-toggle-view:hover, 
+.btn-primary:hover,
+.toolbar-fichas button.btn-primary:hover,
+#btn-registrar-ficha:hover,
+#btn-importar-fichas:hover,
+#btn-registrar-aprendiz:hover,
+#btn-importar-aprendices:hover,
+#btn-crear-usuario:hover,
+#btn-actualizar-lista-solicitudes:hover,
+#btn-actualizar-tickets:hover,
+.btn-actualizar-tickets:hover,
+#btn-abrir-modal-ficha:hover,
+#btn-importar-fichas-excel:hover,
+#btn-abrir-modal-aprendiz:hover,
+#btn-importar-aprendices-excel:hover {
+    background-color: var(--verde-sena-hover) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 15px rgba(45, 133, 0, 0.35) !important;
+}
+
+.btn-logout {
+    background-color: #ef4444 !important;
+    color: var(--blanco) !important;
+    border: none !important;
+    padding: 10px 16px !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    font-family: 'Poppins', sans-serif !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2) !important;
+}
+
+.btn-logout:hover {
+    background-color: #dc2626 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 15px rgba(220, 38, 38, 0.35) !important;
+}
+
+.btn-secondary,
+.modal-buttons-row .btn-secondary {
+    background-color: #64748b !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 10px 18px !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    font-family: 'Poppins', sans-serif !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(100, 116, 139, 0.2) !important;
+}
+
+.btn-secondary:hover,
+.modal-buttons-row .btn-secondary:hover {
+    background-color: #475569 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 15px rgba(71, 85, 105, 0.35) !important;
+}
+
+.btn-danger {
+    background-color: #ef4444 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 10px 18px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    font-family: 'Poppins', sans-serif !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25) !important;
+}
+
+.btn-danger:hover {
+    background-color: #dc2626 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 15px rgba(220, 38, 38, 0.4) !important;
+}
+
+/* =============================================================
+   2. BADGES DE ESTADO Y CONTEO
+   ============================================================= */
+.badge-role {
+    background-color: #E8F5E9;
+    color: var(--verde-sena);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.badge-count {
+    background-color: #ef4444;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: 6px;
+    display: inline-block;
+}
+
+.badge-activo,
+.badge-ejecucion {
+    background-color: #dcfce7;
+    color: #166534;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge-inactivo {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* =============================================================
+   3. BARRA DE BÚSQUEDA Y HERRAMIENTAS
+   ============================================================= */
+.table-toolbar,
+.admin-toolbar, 
+.toolbar-fichas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.input-search,
+.search-input-wrapper input, 
+#buscar-ficha, 
+#buscar-aprendiz {
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 9px 14px 9px 36px !important;
+    border-radius: 8px !important;
+    font-size: 0.88rem !important;
+    color: #1e293b !important;
+    width: 100% !important;
+    max-width: 350px !important;
+    outline: none !important;
+    transition: all 0.2s ease !important;
+}
+
+/* =============================================================
+   4. TABLA DE DATOS PRINCIPAL (VISTAS GENERALES)
+   ============================================================= */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background-color: var(--blanco);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    margin-bottom: 15px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 750px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+    color: #334155;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #f8fafc !important;
+    color: #475569 !important;
+    font-weight: 600 !important;
+    font-size: 0.82rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 14px 16px !important;
+    border-bottom: 2px solid var(--border-color) !important;
+}
+
+.data-table td {
+    padding: 14px 16px !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    vertical-align: middle !important;
+    color: #1e293b;
+}
+
+.data-table tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.data-table tbody tr:hover {
+    background-color: #f8fafc !important;
+}
+
+/* Contención elegante de textos largos en tabla principal (elipsis) */
+.data-table td div {
+    max-width: 260px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.data-table td div[style*="white-space: normal"] {
+    white-space: normal !important;
+    word-break: break-word;
+}
+
+/* =============================================================
+   5. TABLAS DE INFORMACIÓN DENTRO DE MODALES
+   ============================================================= */
+.table-responsive-info,
+.visor-tabla-container {
+    width: 100%;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.user-data-table,
+.visor-tabla-detalles {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+}
+
+.user-data-table tr,
+.visor-tabla-detalles tr {
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.user-data-table tr:last-child,
+.visor-tabla-detalles tr:last-child {
+    border-bottom: none;
+}
+
+/* Etiquetas laterales (Izquierda) */
+.user-data-table th,
+.visor-tabla-detalles td.visor-label {
+    background-color: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+    padding: 14px 16px;
+    width: 38%;
+    text-align: left;
+    vertical-align: middle;
+    border-right: 1px solid #e2e8f0;
+}
+
+/* Valores (Derecha) */
+.user-data-table td,
+.visor-tabla-detalles td.visor-valor {
+    padding: 14px 16px;
+    color: #1e293b;
+    vertical-align: middle;
+    word-break: break-word;
+    font-weight: 500;
+}
+
+.empty-cell-text {
+    text-align: center;
+    padding: 30px !important;
+    color: var(--gris-texto) !important;
+    font-style: italic;
+}
+
+/* =============================================================
+   6. BOTONES DE ACCIÓN PARA TABLAS
+   ============================================================= */
+#tabla-usuarios-body td:last-child,
+.acciones-cell-wrapper-cuentas,
+.tabla-fichas td:last-child,
+.tabla-aprendices td:last-child,
+#tabla-aprendices-body td:last-child,
+#tabla-fichas-body td:last-child {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+    white-space: nowrap !important;
+}
+
+#tabla-usuarios-body td button,
+#tabla-usuarios-body td a.btn-action,
+.acciones-cell-wrapper-cuentas button,
+.tabla-fichas td button:not(.btn-inspect-solic):not(.btn-action-approve):not(.btn-action-reject),
+.tabla-fichas td a:not(.btn-inspect-solic):not(.btn-action-approve):not(.btn-action-reject),
+.tabla-aprendices td button,
+.tabla-aprendices td a,
+#tabla-aprendices-body td button,
+#tabla-aprendices-body td a,
+#tabla-fichas-body td button:not(.btn-inspect-solic):not(.btn-action-approve):not(.btn-action-reject),
+#tabla-fichas-body td a:not(.btn-inspect-solic):not(.btn-action-approve):not(.btn-action-reject) {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.95rem !important;
+    transition: all 0.2s ease-in-out !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+    outline: none !important;
+    text-decoration: none !important;
+}
+
+/* Botón Ver / Examinar */
+#tabla-usuarios-body td button[title*="Ver"],
+#tabla-usuarios-body td button[class*="examine"],
+#tabla-usuarios-body td .btn-action-examine,
+.tabla-fichas td button[title*="Ver"],
+.tabla-fichas td a[title*="Ver"],
+.tabla-aprendices td button[title*="Ver"],
+.tabla-aprendices td a[title*="Ver"],
+#tabla-aprendices-body td button,
+#tabla-aprendices-body td a,
+#tabla-fichas-body td button[title*="Ver"],
+#tabla-fichas-body td a[title*="Ver"],
+.btn-action-examine {
+    color: #0284c7 !important;
+    border: 1.5px solid #bae6fd !important;
+    background-color: #f0f9ff !important;
+}
+.btn-action-examine:hover,
+#tabla-usuarios-body td button[title*="Ver"]:hover,
+.tabla-fichas td button[title*="Ver"]:hover {
+    background-color: #e0f2fe !important;
+    border-color: #7dd3fc !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(2, 132, 199, 0.15) !important;
+}
+
+/* Botón Editar */
+#tabla-usuarios-body td .btn-action-edit,
+#tabla-usuarios-body td button[title*="Editar"],
+.tabla-fichas td button[title*="Editar"],
+.tabla-fichas td a[title*="Editar"],
+.tabla-aprendices td button[title*="Editar"],
+.tabla-aprendices td a[title*="Editar"],
+#tabla-fichas-body td button[title*="Editar"],
+#tabla-fichas-body td a[title*="Editar"],
+.btn-action-edit {
+    color: #b45309 !important;
+    border: 1.5px solid #fde68a !important;
+    background-color: #fffbeb !important;
+}
+.btn-action-edit:hover,
+#tabla-usuarios-body td button[title*="Editar"]:hover {
+    background-color: #fef3c7 !important;
+    border-color: #fcd34d !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(180, 83, 9, 0.15) !important;
+}
+
+/* Botón Ver Grupo */
+.tabla-fichas td button[title*="Aprendiz"],
+.tabla-fichas td a[title*="Aprendiz"],
+.tabla-fichas td button[title*="Grupo"],
+.tabla-fichas td a[title*="Grupo"],
+#tabla-fichas-body td button[title*="Aprendiz"],
+#tabla-fichas-body td a[title*="Aprendiz"],
+#tabla-fichas-body td button[title*="Grupo"],
+#tabla-fichas-body td a[title*="Grupo"],
+.btn-action-group,
+.btn-action-aprendices {
+    color: #6d28d9 !important;
+    border: 1.5px solid #ddd6fe !important;
+    background-color: #f5f3ff !important;
+}
+.btn-action-group:hover,
+.btn-action-aprendices:hover {
+    background-color: #ede9fe !important;
+    border-color: #c4b5fd !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(109, 40, 217, 0.15) !important;
+}
+
+/* Botón Suspender */
+#tabla-usuarios-body td .btn-action-suspend,
+#tabla-usuarios-body td button[title*="Suspender"],
+#tabla-usuarios-body td button[title*="Inactivar"] {
+    color: #c2410c !important;
+    border: 1.5px solid #ffedd5 !important;
+    background-color: #fff7ed !important;
+}
+#tabla-usuarios-body td button[title*="Suspender"]:hover,
+#tabla-usuarios-body td button[title*="Inactivar"]:hover {
+    background-color: #ffedd5 !important;
+    border-color: #fed7aa !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(194, 65, 12, 0.15) !important;
+}
+
+/* Botón Activar */
+#tabla-usuarios-body td .btn-action-activate,
+#tabla-usuarios-body td button[title*="Activar"] {
+    color: #15803d !important;
+    border: 1.5px solid #bbf7d0 !important;
+    background-color: #f0fdf4 !important;
+}
+#tabla-usuarios-body td button[title*="Activar"]:hover {
+    background-color: #dcfce7 !important;
+    border-color: #86efac !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(21, 128, 61, 0.15) !important;
+}
+
+/* Botón Eliminar */
+#tabla-usuarios-body td .btn-action-delete,
+#tabla-usuarios-body td button[title*="Eliminar"],
+.tabla-fichas td button[title*="Eliminar"],
+.tabla-aprendices td button[title*="Eliminar"],
+#tabla-fichas-body td button[title*="Eliminar"],
+#tabla-aprendices-body td button[title*="Eliminar"] {
+    color: #991b1b !important;
+    border: 1.5px solid #fecaca !important;
+    background-color: #fef2f2 !important;
+}
+#tabla-usuarios-body td button[title*="Eliminar"]:hover,
+.tabla-fichas td button[title*="Eliminar"]:hover {
+    background-color: #fee2e2 !important;
+    border-color: #fca5a5 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(153, 27, 27, 0.15) !important;
+}
+
+/* =============================================================
+   7. BOTONES TICKETS Y SOLICITUDES (INSPECCIONAR, APROBAR)
+   ============================================================= */
+.acciones-cell-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    white-space: nowrap !important;
+    width: 100% !important;
+}
+
+.btn-inspect-solic,
+#tabla-tickets-body td .btn-inspect-ticket,
+.btn-inspect-ticket {
+    background-color: #f0fdf4 !important;
+    color: #166534 !important;
+    border: 1.5px solid #bbf7d0 !important;
+    padding: 6px 14px !important;
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+    width: auto !important;
+    height: auto !important;
+    text-decoration: none !important;
+}
+
+.btn-inspect-solic:hover,
+#tabla-tickets-body td .btn-inspect-ticket:hover,
+.btn-inspect-ticket:hover {
+    background-color: #dcfce7 !important;
+    border-color: #86efac !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(21, 128, 61, 0.15) !important;
+}
+
+.btn-action-approve,
+.acciones-cell-wrapper button:first-child,
+#btn-modal-aprobar-sol {
+    background-color: #f0fdf4 !important;
+    color: #166534 !important;
+    border: 1.5px solid #bbf7d0 !important;
+    padding: 6px 14px !important;
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+    transition: all 0.2s ease !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+.btn-action-approve:hover,
+.acciones-cell-wrapper button:first-child:hover,
+#btn-modal-aprobar-sol:hover {
+    background-color: #dcfce7 !important;
+    border-color: #86efac !important;
+    transform: translateY(-1px);
+}
+
+.btn-action-reject,
+.acciones-cell-wrapper button:last-child,
+#btn-modal-rechazar-sol {
+    background-color: #fef2f2 !important;
+    color: #991b1b !important;
+    border: 1.5px solid #fecaca !important;
+    padding: 6px 14px !important;
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+    transition: all 0.2s ease !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+.btn-action-reject:hover,
+.acciones-cell-wrapper button:last-child:hover,
+#btn-modal-rechazar-sol:hover {
+    background-color: #fee2e2 !important;
+    border-color: #fca5a5 !important;
+    transform: translateY(-1px);
+}
+
+/* =============================================================
+   8. SUBPESTAÑAS DE GESTIÓN Y TICKETS
+   ============================================================= */
+.tab-buttons-row,
+.subtabs-fichas-container,
+.toolbar-fichas .subtabs-container,
+.subtabs-container {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 12px;
+}
+
+.tab-buttons-row .btn-tab,
+.tab-buttons-row button,
+.subtabs-fichas-container button,
+.toolbar-fichas button[class*="subtab"],
+.subtabs-container button {
+    background-color: #f8fafc !important;
+    color: #475569 !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 10px 20px !important;
+    border-radius: 10px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease-in-out !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02) !important;
+    outline: none !important;
+}
+
+.tab-buttons-row .btn-tab:hover,
+.tab-buttons-row button:hover,
+.subtabs-fichas-container button:hover,
+.toolbar-fichas button:hover,
+.subtabs-container button:hover {
+    background-color: #f1f5f9 !important;
+    color: #1e293b !important;
+    border-color: #94a3b8 !important;
+}
+
+.tab-buttons-row .btn-tab.active,
+.tab-buttons-row .btn-tab.btn-tab-active,
+.tab-buttons-row button.active,
+.tab-buttons-row button.btn-tab-active,
+.subtabs-fichas-container button.active,
+.subtabs-fichas-container button.btn-tab-active,
+.toolbar-fichas button.active,
+.subtabs-container button.active {
+    background-color: #39A900 !important;
+    color: #ffffff !important;
+    border-color: #329600 !important;
+    box-shadow: 0 4px 12px rgba(57, 169, 0, 0.25) !important;
+}
+
+/* =============================================================
+   9. PAGINACIÓN GENERAL
+   ============================================================= */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 24px 0 12px 0;
+    width: 100%;
+}
+
+.pagination-container button {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 12px;
+    border: 1px solid #cbd5e1;
+    background-color: #ffffff;
+    color: #334155;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination-container button.active {
+    background-color: #39A900 !important;
+    border-color: #329600 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 10px rgba(57, 169, 0, 0.25);
+}
+
+/* =============================================================
+   10. REPORTES Y EXPORTACIÓN A EXCEL
+   ============================================================= */
+.reportes-container {
+    padding: 10px 5px;
+}
+
+.reportes-subtitle {
+    color: var(--gris-texto);
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
+
+.reportes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.report-card {
+    background: #f8fafc;
+    border: 1.5px solid var(--border-color);
+    border-radius: 14px;
+    padding: 22px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.report-card:hover {
+    border-color: var(--verde-sena);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(57, 169, 0, 0.08);
+}
+
+.report-card h4 {
+    color: var(--azul-oscuro);
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.report-card p {
+    color: var(--gris-texto);
+    font-size: 0.88rem;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.btn-exportar,
+.report-card button {
+    background-color: #f0fdf4 !important;
+    color: #166534 !important;
+    border: 1.5px solid #bbf7d0 !important;
+    padding: 10px 16px !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    font-size: 0.88rem !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02) !important;
+    width: 100% !important;
+    text-decoration: none !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.btn-exportar:hover,
+.report-card button:hover {
+    background-color: #dcfce7 !important;
+    border-color: #86efac !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(21, 128, 61, 0.15) !important;
+}
+
+/* =============================================================
+   11. AUTOCOMPLETADO PERSONALIZADO (FICHAS)
+   ============================================================= */
+.custom-autocomplete-container {
+    position: relative;
+    width: 100%;
+}
+
+.custom-autocomplete-input {
+    padding-right: 35px !important; 
+}
+
+.custom-autocomplete-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    color: #64748b;
+    pointer-events: none; 
+}
+
+.custom-autocomplete-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 220px; 
+    overflow-y: auto;  
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 1050; 
+    display: none; 
+    margin-top: 5px;
+}
+
+.custom-autocomplete-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-autocomplete-dropdown::-webkit-scrollbar-track {
+    background: #f8fafc;
+    border-radius: 8px;
+}
+.custom-autocomplete-dropdown::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 8px;
+}
+.custom-autocomplete-dropdown::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.custom-autocomplete-dropdown div {
+    padding: 12px 14px;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.88rem;
+    color: #334155;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.custom-autocomplete-dropdown div:last-child {
+    border-bottom: none;
+}
+
+.custom-autocomplete-dropdown div:hover,
+.custom-autocomplete-dropdown div.autocomplete-active {
+    background-color: #f0fdf4;
+    color: #166534;
+    padding-left: 18px; 
+    font-weight: 500;
+}
+
+/* =============================================================
+   12. ADAPTABILIDAD RESPONSIVE PARA CELULARES
+   ============================================================= */
+@media (max-width: 768px) {
+    .table-toolbar,
+    .admin-toolbar, 
+    .toolbar-fichas {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+    }
+
+    .input-search,
+    .search-input-wrapper input, 
+    #buscar-ficha, 
+    #buscar-aprendiz {
+        max-width: 100% !important;
+    }
+
+    /* Botones responsivos sin que se ensanchen desproporcionadamente */
+    .toolbar-fichas button,
+    .admin-toolbar button,
+    #btn-registrar-ficha,
+    #btn-importar-fichas,
+    #btn-registrar-aprendiz,
+    #btn-importar-aprendices,
+    #btn-crear-usuario,
+    #btn-actualizar-tickets,
+    .btn-actualizar-tickets,
+    #btn-abrir-modal-ficha,
+    #btn-importar-fichas-excel,
+    #btn-abrir-modal-aprendiz,
+    #btn-importar-aprendices-excel {
+        display: inline-flex !important;
+        width: auto !important;
+        min-width: 160px !important;
+        margin-right: 0 !important;
+        margin-bottom: 10px !important; 
+        margin-top: 0 !important;
+        text-align: center !important;
+        padding: 10px 16px !important;
+        font-size: 0.9rem !important;
+        border-radius: 10px !important;
+        box-shadow: 0 4px 10px rgba(57, 169, 0, 0.2) !important;
+        align-self: flex-start !important;
+    }
+
+    .acciones-cell-wrapper {
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+    }
+
+    .btn-action-approve,
+    .btn-action-reject,
+    .btn-inspect-solic,
+    .btn-inspect-ticket,
+    .acciones-cell-wrapper button {
+        width: auto !important;
+        justify-content: center !important;
+        padding: 6px 12px !important;
+    }
+}

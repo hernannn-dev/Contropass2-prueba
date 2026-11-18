@@ -1,0 +1,256 @@
+/* ============================================================= */
+/* CONTROL PASS - SENA CIDT                                      */
+/* MÓDULO COMPLETO Y CORREGIDO: MODALES, RECUPERACIÓN Y COOKIES   */
+/* ============================================================= */
+
+/* ============================================================= */
+/* 1. ESTRUCTURA Y FONDO DE CAPA SUPERPUESTA (OVERLAY)           */
+/* ============================================================= */
+.modal-overlay {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(15, 23, 42, 0.75) !important;
+    backdrop-filter: blur(6px) !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 10000 !important;
+    padding: 15px !important;
+    box-sizing: border-box !important;
+}
+
+/* Prioridad máxima para modales de alta jerarquía (Privacidad / Recuperación) */
+.modal-z-high,
+#modal-privacidad {
+    z-index: 100000 !important;
+}
+
+/* Despliegue con Flexbox */
+.modal-overlay:not(.modal-hidden),
+.modal-overlay[style*="display: flex"] {
+    display: flex !important;
+}
+
+/* Ocultamiento absoluto */
+.modal-hidden { 
+    display: none !important; 
+}
+
+/* ============================================================= */
+/* 2. TARJETAS Y CAJAS CONTENEDORAS DE MODALES                    */
+/* ============================================================= */
+.modal-content,
+.modal-alerta-box {
+    background-color: #ffffff !important;
+    padding: 32px 28px !important;
+    border-radius: 20px !important;
+    width: 100% !important;
+    max-width: 450px !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3) !important;
+    margin: auto !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    border: 1px solid rgba(226, 232, 240, 0.9) !important;
+    box-sizing: border-box !important;
+    animation: modalPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+.modal-width-md {
+    max-width: 480px !important;
+}
+
+.modal-max-width-lg {
+    max-width: 650px !important;
+}
+
+@keyframes modalPopIn {
+    0% { opacity: 0; transform: scale(0.9) translateY(12px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Encabezados e Iconos */
+.modal-icon-lg {
+    width: 68px !important;
+    height: 68px !important;
+    background-color: #f0fdf4 !important;
+    color: var(--verde-sena, #39A900) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 2rem !important;
+    line-height: 1 !important;
+    margin: 0 auto 18px auto !important;
+    border: 1px solid rgba(57, 169, 0, 0.2) !important;
+    box-shadow: 0 4px 12px rgba(57, 169, 0, 0.12) !important;
+}
+
+.modal-title-dark {
+    font-size: 1.35rem !important;
+    font-weight: 700 !important;
+    color: var(--azul-sena, #00324D) !important;
+    margin: 0 0 10px 0 !important;
+    width: 100%;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.modal-text-muted {
+    font-size: 0.92rem !important;
+    color: var(--gris-texto, #64748b) !important;
+    line-height: 1.5 !important;
+    margin-bottom: 20px !important;
+    width: 100%;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.modal-body-text {
+    text-align: left !important;
+    font-size: 0.92rem !important;
+    color: #334155 !important;
+    line-height: 1.6 !important;
+    max-height: 55vh;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+.modal-mb-md { margin-bottom: 16px !important; }
+.modal-mb-lg { margin-bottom: 24px !important; }
+.modal-mt-lg { margin-top: 24px !important; }
+
+/* ============================================================= */
+/* 3. CAMPOS DE TEXTO INTERACTIVOS DENTRO DE MODALES              */
+/* ============================================================= */
+.form-input-clean,
+.modal-content input[type="text"],
+.modal-content input[type="email"],
+.modal-content input[type="password"] {
+    width: 100% !important;
+    padding: 12px 16px !important;
+    border: 1.5px solid var(--borde, #cbd5e1) !important;
+    border-radius: 10px !important;
+    font-size: 0.92rem !important;
+    font-family: 'Poppins', sans-serif !important;
+    outline: none !important;
+    background-color: #ffffff !important;
+    color: var(--texto-oscuro, #1e293b) !important;
+    transition: all 0.25s ease !important;
+    box-sizing: border-box !important;
+}
+
+.form-input-clean:focus,
+.modal-content input:focus {
+    border-color: var(--verde-sena, #39A900) !important;
+    box-shadow: 0 0 0 4px rgba(57, 169, 0, 0.15) !important;
+}
+
+/* ============================================================= */
+/* 4. BOTONES Y ACCIONES                                         */
+/* ============================================================= */
+.modal-buttons-row,
+.modal-actions {
+    display: flex !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin-top: 10px !important;
+    justify-content: center !important;
+}
+
+.btn-flex-1 { 
+    flex: 1 !important; 
+}
+
+.btn-secondary {
+    padding: 12px 18px !important;
+    background-color: #f1f5f9 !important;
+    color: #334155 !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    font-size: 0.92rem !important;
+    font-family: 'Poppins', sans-serif !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-secondary:hover {
+    background-color: #e2e8f0 !important;
+    color: #0f172a !important;
+}
+
+/* ============================================================= */
+/* 5. AVISO Y BANNER DE COOKIES (SENA)                            */
+/* ============================================================= */
+.cookie-banner-sena,
+#cookie-banner {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 92% !important;
+    max-width: 680px !important;
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    padding: 18px 24px !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22) !important;
+    border: 1px solid var(--border-color, #e2e8f0) !important;
+    border-top: 4px solid var(--verde-sena, #39A900) !important;
+    z-index: 9000 !important; /* Inferior a los modales sobrepuestos */
+    box-sizing: border-box !important;
+    animation: slideUpCookies 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes slideUpCookies {
+    from { opacity: 0; transform: translate(-50%, 40px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.cookie-content {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 18px !important;
+}
+
+.cookie-text {
+    font-size: 0.86rem !important;
+    color: var(--gris-texto, #475569) !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+    font-family: 'Poppins', sans-serif !important;
+    text-align: left !important;
+}
+
+.cookie-link {
+    color: var(--verde-sena, #39A900) !important;
+    font-weight: 600 !important;
+    text-decoration: underline !important;
+}
+
+.btn-cookie-size {
+    width: auto !important;
+    min-width: 180px !important;
+    white-space: nowrap !important;
+}
+
+/* Adaptación para Pantallas Pequeñas */
+@media (max-width: 650px) {
+    .cookie-content {
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+    .cookie-text {
+        text-align: center !important;
+    }
+    .btn-cookie-size {
+        width: 100% !important;
+    }
+    .modal-buttons-row,
+    .modal-actions {
+        flex-direction: column !important;
+    }
+}

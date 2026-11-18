@@ -1,0 +1,78 @@
+/* Contenedor General del Panel */
+.panel-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Encabezado del Panel */
+.panel-header {
+    background: var(--azul-sena, #00324D);
+    color: var(--blanco, #ffffff);
+    padding: 15px 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Agrupador del Logo y Título */
+.header-title-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Control estricto de tamaño para el Logo */
+.panel-header .sena-logo-img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    border-radius: 50%;
+    background-color: #ffffff;
+    padding: 2px;
+}
+
+.header-title-container h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Botón de Cierre de Sesión */
+.btn-logout {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.2s ease;
+}
+
+.btn-logout:hover {
+    background-color: #bd2130;
+}
+
+/* Sección de Contenido Principal */
+.panel-main {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.welcome-card h1 {
+    margin-top: 0;
+    color: #333333;
+    font-size: 1.5rem;
+}
+
+.welcome-card p {
+    color: #666666;
+    margin-bottom: 0;
+}

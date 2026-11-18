@@ -1,0 +1,59 @@
+# =============================================================
+# ARCHIVO .gitignore PARA EL PROYECTO CONTROLPASS
+# =============================================================
+
+# 1. DEPENDENCIAS Y PAQUETES
+# Ignoramos la carpeta vendor para no subir las librerías de Composer (PhpSpreadsheet, PHPMailer, etc.)
+/vendor/
+/node_modules/
+
+# 2. CONFIGURACIÓN Y SECRETOS (CRÍTICO)
+# NUNCA subas contraseñas de bases de datos o correos a GitHub.
+# Si necesitas que otros tengan el archivo, crea un 'conexion.example.php'
+/config/conexion.php
+/config/mail.php
+.env
+.env.local
+.env.*.local
+
+# 3. ARCHIVOS SUBIDOS POR LOS USUARIOS (DATOS PERSONALES Y PESADOS)
+# Evitamos subir las fotos de perfil, documentos y evidencias de los tickets.
+# Mantenemos la carpeta vacía pero ignoramos su contenido.
+/uploads/*
+!/uploads/.gitkeep
+!/uploads/elementos/
+!/uploads/evidencias/
+!/uploads/perfiles/
+/uploads/elementos/*
+!/uploads/elementos/.gitkeep
+/uploads/evidencias/*
+!/uploads/evidencias/.gitkeep
+/uploads/perfiles/*
+!/uploads/perfiles/.gitkeep
+
+# 4. ARCHIVOS DE DEPURACIÓN Y LOGS
+# Ignoramos el volcado de texto que generaste con el script de Python
+debug_dump_*.txt
+*.dump.txt
+*.log
+error_log
+php_errors.log
+
+# 5. ARCHIVOS DEL SISTEMA OPERATIVO
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# 6. CONFIGURACIÓN DE EDITORES DE CÓDIGO (IDE)
+# Archivos de Visual Studio Code, PhpStorm, etc.
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+
+# 7. ARCHIVOS COMPILADOS O TEMPORALES
+*.pyc
+__pycache__/
+*.sqlite
+*.db

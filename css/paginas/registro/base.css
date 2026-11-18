@@ -1,0 +1,103 @@
+/* =============================================================
+   MÓDULO: VARIABLES, RESET, LAYOUT Y NAVEGACIÓN
+   ============================================================= */
+:root {
+    --verde-sena: #39A900;
+    --verde-sena-hover: #2d8500;
+    --azul-oscuro: #0f172a;
+    --fondo-suave: #F4F7FB;
+    --blanco: #ffffff;
+    --gris-texto: #64748b;
+    --border-color: #cbd5e1;
+    --sombra-card: 0 15px 35px rgba(0, 0, 0, 0.12);
+    --radio-card: 16px;
+    --radio-input: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: #cbd5e1;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Tarjeta Contenedora Principal (Idéntica al Login) */
+.login-container {
+    background: var(--blanco);
+    border-radius: var(--radio-card);
+    box-shadow: var(--sombra-card);
+    display: flex;
+    width: 100%;
+    max-width: 1150px;
+    min-height: 620px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.login-brand {
+    width: 45%;
+    flex-shrink: 0;
+    position: relative;
+    background: url('../../imagenes/fondoSena.png') center/cover no-repeat; /* 👈 Ruta corregida según tu estructura */
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Panel Derecho */
+.login-form-area {
+    width: 55%;
+    flex-grow: 1;
+    position: relative;
+    padding: 35px 40px 35px 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #ffffff;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.login-form-area::-webkit-scrollbar { width: 6px; }
+.login-form-area::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
+.login-form-area::-webkit-scrollbar-thumb { background: var(--verde-sena); border-radius: 10px; }
+
+/* ============================================================= */
+/* MEDIA QUERY RESPONSIVA (TABLETS Y CELULARES BAJO 992px)       */
+/* ============================================================= */
+@media screen and (max-width: 992px) {
+    body.login-body {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    .login-container {
+        flex-direction: column !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+    }
+
+    .login-brand {
+        width: 100% !important;
+        min-height: 240px;
+        padding: 30px 20px !important;
+    }
+
+    .login-form-area {
+        width: 100% !important;
+        padding: 25px 20px !important;
+        max-height: none !important;
+    }
+}

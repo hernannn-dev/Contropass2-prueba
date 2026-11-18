@@ -1,0 +1,465 @@
+/* =============================================================
+   MÓDULO DE COMPONENTES: BOTONES, TABLAS Y FORMULARIOS
+   ============================================================= */
+
+.btn-primary {
+    background-color: var(--verde-sena) !important;
+    color: var(--blanco) !important;
+    border: none !important;
+    padding: 12px 24px !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    font-family: 'Poppins', sans-serif !important;
+    transition: all 0.25s ease !important;
+    box-shadow: 0 4px 14px rgba(57, 169, 0, 0.25) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px;
+    text-align: center;
+    line-height: 1.4;
+    white-space: normal;
+}
+
+.btn-primary:hover {
+    background-color: var(--verde-sena-hover) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 18px rgba(45, 133, 0, 0.35) !important;
+}
+
+.btn-secondary {
+    background-color: #f1f5f9 !important;
+    color: #475569 !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 12px 24px !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    font-family: 'Poppins', sans-serif !important;
+    transition: all 0.25s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+    line-height: 1.4;
+    white-space: normal;
+}
+
+.btn-secondary:hover {
+    background-color: #e2e8f0 !important;
+    color: var(--azul-oscuro) !important;
+}
+
+/* BOTÓN ELIMINAR EN ROJO PROFESIONAL */
+.btn-eliminar-elemento, .btn-danger {
+    background-color: #ef4444 !important;
+    color: var(--blanco) !important;
+    border: none !important;
+    padding: 8px 16px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 3px 10px rgba(239, 68, 68, 0.25) !important;
+}
+
+.btn-eliminar-elemento:hover, .btn-danger:hover {
+    background-color: #dc2626 !important;
+    transform: translateY(-1px) !important;
+}
+
+.btn-logout {
+    background-color: #ef4444 !important;
+    color: var(--blanco) !important;
+    border: none !important;
+    padding: 10px 18px !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    font-family: 'Poppins', sans-serif !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none;
+}
+
+.badge-role {
+    background-color: #E8F5E9;
+    color: var(--verde-sena);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+/* LAYOUT DE INFORMACIÓN PERSONAL */
+.user-info-layout {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.avatar-view-container {
+    text-align: center;
+    flex: 0 0 200px;
+}
+
+.avatar-oval-img {
+    width: 130px !important;
+    height: 165px !important;
+    border-radius: 50% / 40% !important;
+    object-fit: cover !important;
+    border: 4px solid var(--verde-sena) !important;
+    box-shadow: 0 8px 20px rgba(57, 169, 0, 0.25) !important;
+    background-color: var(--fondo-suave);
+    display: block;
+    margin: 0 auto 14px auto;
+}
+
+.foto-label {
+    font-size: 0.85rem;
+    color: var(--gris-texto);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.acciones-perfil-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.table-responsive-info {
+    flex: 1;
+    min-width: 300px;
+    max-width: 750px;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    overflow: hidden;
+    background-color: var(--blanco);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+/* TABLA DE INFORMACIÓN PERSONAL CON SALTO DE LÍNEA AUTOMÁTICO */
+.user-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    table-layout: fixed;
+}
+
+.user-data-table tr {
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.user-data-table th, 
+.user-data-table td {
+    padding: 14px 18px;
+    color: #1e293b;
+    font-weight: 500;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal !important;
+}
+
+.user-data-table th {
+    background-color: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+    width: 42%;
+    text-align: left;
+    border-right: 1px solid #e2e8f0;
+}
+
+.user-data-table td {
+    width: 58%;
+}
+
+/* FORMULARIOS Y CAMPOS DE TEXTO */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.flex-1 {
+    flex: 1;
+    min-width: 260px;
+}
+
+.form-label-bold {
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: block;
+    color: var(--azul-oscuro);
+    margin-bottom: 8px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid #cbd5e1;
+    background-color: #ffffff;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: #1e293b;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+/* EFECTO DE ENFOQUE (FOCUS) CON BORDE Y SOMBRA VERDE SENA */
+.form-input:focus,
+.input-search:focus,
+textarea.form-input:focus,
+select.form-input:focus {
+    border-color: var(--verde-sena) !important;
+    box-shadow: 0 0 0 3px rgba(57, 169, 0, 0.15) !important;
+    outline: none !important;
+}
+
+/* CONTENEDOR Y BOTÓN DEL ICONO DE CONTRASEÑA (OJITO SVG) */
+.input-password-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.input-password-wrapper .form-input {
+    width: 100%;
+    padding-right: 48px;
+}
+
+.btn-toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    color: #64748b;
+    z-index: 5;
+    box-shadow: none !important;
+    transition: color 0.2s ease;
+}
+
+.btn-toggle-password:hover {
+    color: var(--verde-sena);
+}
+
+.btn-toggle-password svg,
+.btn-toggle-password .icon-eye {
+    width: 20px !important;
+    height: 20px !important;
+    display: block;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+input[type="file"].form-input {
+    padding: 10px;
+    background: #f8fafc;
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+    background-color: var(--verde-sena);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btn-full-width {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 14px !important;
+    margin-top: 12px;
+}
+
+/* TABLAS DE GESTIÓN CON SCROLL HORIZONTAL */
+.table-toolbar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.input-search {
+    flex: 1;
+    min-width: 250px;
+    padding: 12px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    background: var(--blanco);
+    margin-top: 10px;
+}
+
+.data-table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.data-table th, .data-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.data-table th {
+    background-color: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+}
+
+.empty-cell-text {
+    text-align: center;
+    color: var(--gris-texto);
+    padding: 30px !important;
+}
+
+/* ==========================================================
+   ESTILOS PROFESIONALES Y RESPONSIVE - CARNET DE ACCESO
+========================================================== */
+
+.barcode-card-section {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.barcode-card-section:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+}
+
+.barcode-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.barcode-image-container {
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 12px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 260px;
+    box-sizing: border-box;
+}
+
+.barcode-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+.barcode-action-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Botón profesional estilo institucional SENA */
+.btn-action-barcode {
+    background-color: #39A900;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 4px rgba(57, 169, 0, 0.2);
+    width: 100%;
+    max-width: 260px;
+}
+
+.btn-action-barcode:hover {
+    background-color: #2d8500;
+}
+
+.btn-action-barcode:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================================
+   ADAPTABILIDAD MÓVIL (RESPONSIVE DESIGN)
+========================================================== */
+@media screen and (max-width: 768px) {
+    .barcode-card-section {
+        padding: 15px;
+        margin: 10px 0;
+    }
+
+    .barcode-image-container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .btn-action-barcode {
+        max-width: 100%;
+        padding: 12px;
+        font-size: 14px; /* Mayor área táctil en celulares */
+    }
+}
+
+@media (max-width: 768px) {
+    .table-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .table-toolbar button {
+        width: 100%;
+    }
+}

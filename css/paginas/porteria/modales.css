@@ -1,0 +1,595 @@
+/* ============================================================= */
+/* MODALES Y VISORES - CONTROL GENERAL (COMPLETO Y CORREGIDO)    */
+/* ============================================================= */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px 15px;
+}
+
+.modal-content {
+    background: var(--blanco) !important;
+    padding: 25px;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    position: relative;
+    z-index: 1001;
+    box-sizing: border-box !important;
+}
+
+/* ============================================================= */
+/* 1. MODAL AMPLIO DE INSPECCIÓN (DOS COLUMNAS)                  */
+/* ============================================================= */
+
+.modal-content-amplio {
+    max-width: 1050px !important;
+    width: 95% !important;
+    padding: 30px !important;
+    max-height: 88vh !important;
+    overflow-y: auto !important;
+    border-radius: 20px !important;
+    box-sizing: border-box !important;
+}
+
+.modal-grid-layout {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 30px !important;
+    align-items: start !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.modal-col-left {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.modal-col-right {
+    border-left: 2px solid var(--verde-sena);
+    padding-left: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.modal-col-left h3,
+.modal-col-right h3 {
+    text-align: center !important;
+    color: var(--azul-oscuro) !important;
+    margin-bottom: 15px !important;
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    width: 100% !important;
+}
+
+/* ============================================================= */
+/* 2. ÓVALO PERFECTO Y FOTO DE PERFIL / SOPORTE                  */
+/* ============================================================= */
+
+.user-profile-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center !important;
+    margin-bottom: 14px;
+}
+
+.user-profile-preview img,
+.sol-rostro-container img.img-rostro-estilo,
+#sol-modal-rostro {
+    width: 120px !important;
+    height: 145px !important;
+    max-width: 120px !important;
+    max-height: 145px !important;
+    border-radius: 50% / 40% !important;
+    object-fit: cover !important;
+    border: 3.5px solid var(--verde-sena) !important;
+    box-shadow: 0 5px 14px rgba(57, 169, 0, 0.25) !important;
+    background-color: var(--fondo-suave) !important;
+    margin: 0 auto 10px auto !important;
+    display: block !important;
+}
+
+.user-profile-preview h4 {
+    font-size: 1.1rem;
+    color: var(--azul-oscuro);
+    text-align: center;
+    margin: 0 0 6px 0;
+    font-weight: 700;
+}
+
+.sol-rostro-container img.img-documento-estilo {
+    width: 100% !important;
+    max-width: 380px !important;
+    height: 200px !important;
+    object-fit: contain !important;
+    border-radius: 12px !important;
+    border: 2.5px solid var(--verde-sena) !important;
+    padding: 6px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    background-color: #f8fafc !important;
+    box-shadow: 0 5px 16px rgba(57, 169, 0, 0.2) !important;
+}
+
+/* ============================================================= */
+/* 3. TABLAS INTERNAS DE LOS MODALES                             */
+/* ============================================================= */
+
+.table-responsive-info {
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    margin-bottom: 16px !important;
+    background: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.user-data-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    font-size: 0.88rem !important;
+    table-layout: fixed !important; /* Mantiene la proporción estricta de columnas */
+}
+
+.user-data-table th, 
+.user-data-table td {
+    padding: 12px 14px !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    text-align: left !important;
+    word-break: break-all !important; /* Rompe y ajusta los textos muy largos (como correos) hacia abajo */
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    vertical-align: middle !important;
+}
+
+.user-data-table tr:last-child th,
+.user-data-table tr:last-child td {
+    border-bottom: none !important;
+}
+
+.user-data-table th {
+    color: #475569 !important;
+    font-weight: 600 !important;
+    width: 42% !important;
+    background: #f8fafc !important;
+    border-right: 1px solid #f1f5f9 !important;
+}
+
+.user-data-table td {
+    color: var(--azul-oscuro) !important;
+    font-weight: 500 !important;
+    width: 58% !important;
+    background: #ffffff !important;
+}
+
+/* ============================================================= */
+/* 4. COMPONENTES Y EQUIPOS REGISTRADOS                         */
+/* ============================================================= */
+
+.equipos-inspector-box {
+    background: var(--fondo-suave);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #334155;
+    max-height: 160px;
+    overflow-y: auto;
+    box-sizing: border-box !important;
+}
+
+.equipo-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-color);
+    gap: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    box-sizing: border-box !important;
+}
+
+.equipo-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+    word-break: break-word;
+}
+
+.equipo-item-tipo {
+    font-weight: 600;
+    color: var(--azul-oscuro);
+    font-size: 0.85rem;
+}
+
+.equipo-item-marca {
+    color: var(--gris-texto);
+    font-size: 0.82rem;
+}
+
+.equipo-item-row button,
+.equipo-item-row .btn-action-ver {
+    flex-shrink: 0;
+    padding: 6px 14px !important;
+    font-size: 0.8rem !important;
+    border-radius: 8px !important;
+}
+
+.dispositivo-img-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.dispositivo-img-box > span {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #475569;
+    display: block;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.preview-box-container img,
+.dispositivo-img-box img,
+.soporte-box img {
+    width: 100% !important;
+    height: 130px !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+    border: 2px solid var(--verde-sena) !important;
+    box-shadow: 0 4px 12px rgba(57, 169, 0, 0.2) !important;
+    background-color: var(--fondo-suave) !important;
+    display: block !important;
+}
+
+.preview-box-container {
+    background: #f8fafc;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1.5px solid var(--border-color);
+    position: relative;
+    padding: 4px;
+}
+
+.serial-display-container {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.serial-display-container span {
+    font-size: 0.85rem;
+    color: #64748b;
+    display: block;
+}
+
+.serial-display-container strong {
+    font-size: 1.1rem;
+    color: var(--azul-oscuro);
+    font-family: monospace;
+}
+
+.descripcion-box-wrapper {
+    margin-bottom: 20px;
+}
+
+.descripcion-box-wrapper > span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.descripcion-box-wrapper > div {
+    background: #e2e8f0;
+    color: #1e293b;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    text-align: center;
+}
+
+/* ============================================================= */
+/* 5. BOTONES DE ACCIÓN (SIMÉTRICOS AL 50% Y DISEÑOS SUAVES)     */
+/* ============================================================= */
+
+.modal-actions-row {
+    display: flex !important;
+    gap: 12px !important;
+    margin-top: 16px !important;
+    margin-bottom: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.modal-actions-row button {
+    flex: 0 0 calc(50% - 6px) !important;
+    width: calc(50% - 6px) !important;
+    min-width: 0 !important;
+    padding: 12px 10px !important;
+    font-size: 0.82rem !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+/* Estilo suave moderno para Aprobar */
+.btn-modal-accion-aprobar,
+.modal-actions-row button[id*="aprobar"],
+.modal-actions-row .btn-primary {
+    background-color: #f0fdf4 !important;
+    color: #166534 !important;
+    border: 1.5px solid #bbf7d0 !important;
+}
+
+.btn-modal-accion-aprobar:hover,
+.modal-actions-row button[id*="aprobar"]:hover,
+.modal-actions-row .btn-primary:hover {
+    background-color: #dcfce7 !important;
+    border-color: #86efac !important;
+}
+
+/* Estilo suave moderno para Rechazar */
+.btn-modal-accion-rechazar,
+.modal-actions-row button[id*="rechazar"],
+.modal-actions-row .btn-danger {
+    background-color: #fef2f2 !important;
+    color: #991b1b !important;
+    border: 1.5px solid #fecaca !important;
+}
+
+.btn-modal-accion-rechazar:hover,
+.modal-actions-row button[id*="rechazar"]:hover,
+.modal-actions-row .btn-danger:hover {
+    background-color: #fee2e2 !important;
+    border-color: #fca5a5 !important;
+}
+
+/* Botón inferior principal de cierre / visor */
+#btn-modal-cerrar-visor,
+.btn-cerrar-visor,
+#btn-modal-inspeccionar,
+#btn-cerrar-modal-solreg {
+    background-color: var(--verde-sena) !important;
+    color: #ffffff !important;
+    border: none !important;
+    width: 100% !important;
+    padding: 12px 18px !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    font-size: 0.92rem !important;
+    cursor: pointer !important;
+    display: block !important;
+    margin-top: 12px !important;
+    text-align: center !important;
+    font-family: 'Poppins', sans-serif !important;
+    box-sizing: border-box !important;
+}
+
+#btn-modal-cerrar-visor:hover,
+.btn-cerrar-visor:hover,
+#btn-modal-inspeccionar:hover,
+#btn-cerrar-modal-solreg:hover {
+    background-color: var(--verde-sena-hover) !important;
+}
+
+/* ============================================================= */
+/* 6. MODAL TARJETA EXAMINAR & MODAL GLOBAL                     */
+/* ============================================================= */
+
+.modal-examinar-card {
+    max-width: 540px !important;
+    width: 92% !important;
+    background: #ffffff !important;
+    padding: 24px 28px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+    max-height: 88vh !important;
+    overflow-y: auto !important;
+    box-sizing: border-box !important;
+}
+
+.modal-header-custom {
+    text-align: center !important;
+    margin-bottom: 14px !important;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.modal-title-sm {
+    text-align: center !important;
+    width: 100% !important;
+    display: block !important;
+    font-weight: 700;
+    color: var(--azul-oscuro);
+    font-size: 1.15rem;
+}
+
+.sol-rostro-container {
+    text-align: center !important;
+    margin-bottom: 16px !important;
+}
+
+.sol-rostro-container span {
+    text-align: center !important;
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+    color: var(--azul-oscuro) !important;
+    display: block !important;
+    margin-bottom: 6px !important;
+}
+
+#modal-confirmacion-global .modal-content {
+    max-width: 420px !important;
+    text-align: center !important;
+    padding: 30px 25px !important;
+    border-radius: 24px !important;
+}
+
+#modal-conf-titulo {
+    margin-bottom: 10px !important;
+    color: var(--azul-oscuro) !important;
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+}
+
+#modal-conf-mensaje {
+    margin-bottom: 24px !important;
+    color: var(--gris-texto) !important;
+    font-size: 0.92rem !important;
+    line-height: 1.5 !important;
+}
+
+.modal-acciones-global {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 14px !important;
+    width: 100% !important;
+}
+
+.btn-modal-cancelar,
+.btn-modal-aceptar {
+    border: none !important;
+    padding: 12px 28px !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    cursor: pointer !important;
+    flex: 1 !important;
+}
+
+.btn-modal-cancelar {
+    background-color: #64748b !important;
+    color: #ffffff !important;
+}
+
+.btn-modal-aceptar {
+    background-color: var(--verde-sena) !important;
+    color: #ffffff !important;
+}
+
+/* ============================================================= */
+/* 7. ADAPTABILIDAD MÓVIL (AJUSTE DE TEXTOS LARGOS EN TABLAS)    */
+/* ============================================================= */
+
+@media (max-width: 768px) {
+    .modal-content-amplio,
+    .modal-examinar-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 16px !important;
+        margin: 5px !important;
+        max-height: 90vh !important;
+    }
+
+    .modal-grid-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+
+    .modal-col-right {
+        border-left: none !important;
+        border-top: 2px solid var(--verde-sena) !important;
+        padding-left: 0 !important;
+        padding-top: 20px !important;
+    }
+
+    /* 🟢 CORRECCIÓN PARA QUE LOS VALORES LARGOS BAJEN DE LÍNEA EN CELULAR */
+    .user-data-table th, 
+    .user-data-table td {
+        padding: 10px 10px !important;
+        font-size: 0.82rem !important;
+        word-break: break-all !important; /* Fuerza el salto limpio de textos largos */
+        overflow-wrap: break-word !important;
+    }
+
+    .user-data-table th {
+        width: 44% !important;
+    }
+
+    .user-data-table td {
+        width: 56% !important;
+    }
+
+    /* Distribución horizontal para equipos */
+    .equipo-item-row {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 10px !important;
+        padding: 10px 12px !important;
+        background-color: #ffffff !important;
+        border-radius: 8px !important;
+        margin-bottom: 6px !important;
+        box-sizing: border-box !important;
+    }
+
+    .equipo-item-info {
+        flex: 1 !important;
+        min-width: 0 !important;
+        text-align: left !important;
+    }
+
+    .equipo-item-row button,
+    .equipo-item-row .btn-action-ver {
+        width: auto !important;
+        flex-shrink: 0 !important;
+        padding: 6px 16px !important;
+        font-size: 0.8rem !important;
+    }
+
+    .modal-actions-row {
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 8px !important;
+    }
+
+    .modal-actions-row button {
+        flex: 0 0 calc(50% - 4px) !important;
+        width: calc(50% - 4px) !important;
+        padding: 10px 6px !important;
+        font-size: 0.76rem !important;
+    }
+}
