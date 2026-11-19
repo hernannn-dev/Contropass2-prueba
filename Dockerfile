@@ -1,7 +1,21 @@
 FROM php:8.5-apache
 
 # MySQL, PHP y reglas de rutas de ControlPass.
-RUN docker-php-ext-install pdo_mysql mysqli \
+# Bibliotecas necesarias para GD
+RUN apt-get update && apt-get install -y \
+    libfreetype-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    libwebp-dev \
+    && docker-php-ext-configure gd \
+        --with-freetype \
+        --with-jpeg \
+        --with-webp \
+    && docker-php-ext-install -j$(nproc) \
+        pdo_mysql \
+        mysqli \
+        gd \
+    && rm -rf /var/lib/apt/lists/* \
     && a2enmod rewrite \
     && sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
 
