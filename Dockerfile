@@ -23,8 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         mbstring \
         dom \
         xml \
-        xmlreader \
-        xmlwriter \
+    && docker-php-ext-install xmlreader xmlwriter \
     && rm -rf /var/lib/apt/lists/*
 
 # Permitir reglas de reescritura del proyecto
