@@ -1,7 +1,7 @@
 # ControlPass - PHP 8.3 / Apache / Railway
 FROM php:8.3-apache
 
-# Dependencias del sistema para las extensiones PHP requeridas por Composer
+# Bibliotecas necesarias para GD, ZIP, Intl y mbstring.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libfreetype-dev \
     libjpeg62-turbo-dev \
@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libzip-dev \
     libicu-dev \
     libonig-dev \
-    libxml2-dev \
     unzip \
     git \
     && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
@@ -21,32 +20,28 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zip \
         intl \
         mbstring \
-        dom \
-        xml \
-    && docker-php-ext-install xmlreader xmlwriter \
     && rm -rf /var/lib/apt/lists/*
 
-# Permitir reglas de reescritura del proyecto
+# Habilitar .htaccess y mod_rewrite.
 RUN a2enmod rewrite \
     && sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
 
-# Instalar Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 WORKDIR /var/www/html
 COPY . .
 
-# Crear configuraciones a partir de plantillas sin secretos
+# Crear archivos de configuración a partir de plantillas sin credenciales.
 RUN test -f config/conexion.php.example \
     && test -f config/mail.php.example \
     && cp config/conexion.php.example config/conexion.php \
     && cp config/mail.php.example config/mail.php
 
-# Verificar que las extensiones estén disponibles antes de instalar paquetes
-RUN php -r 'foreach (["gd", "pdo_mysql", "mbstring", "dom", "xml", "xmlreader", "xmlwriter", "zip"] as $ext) { if (!extension_loaded($ext)) { fwrite(STDERR, "Missing PHP extension: $ext\n"); exit(1); } }'
+# XML/DOM/XMLReader/XMLWriter ya vienen habilitadas en la imagen oficial.
+# Verificarlo, junto con las extensiones compiladas, antes de Composer.
+RUN php -r 'foreach (["gd", "pdo_mysql", "mbstring", "dom", "xml", "xmlreader", "xmlwriter", "zip", "intl"] as $ext) { if (!extension_loaded($ext)) { fwrite(STDERR, "Missing PHP extension: $ext\n"); exit(1); } }'
 
-# Instalar dependencias según composer.lock
 RUN composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader \
     && composer check-platform-reqs --no-dev
 
