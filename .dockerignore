@@ -1,0 +1,12 @@
+.git
+.gitignore
+.env
+.env.*
+**/.env
+**/.env.*
+config/conexion.php
+config/mail.php
+**/vendor
+node_modules
+*.sql
+*.zip
