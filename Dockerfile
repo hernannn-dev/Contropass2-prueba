@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Habilitar .htaccess y mod_rewrite.
+# Configurar Apache y evitar conflictos entre módulos MPM.
 RUN a2dismod mpm_event mpm_worker \
     && a2enmod mpm_prefork rewrite \
     && sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf \
