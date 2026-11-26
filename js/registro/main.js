@@ -129,19 +129,37 @@ function mostrarAlerta(mensaje, titulo = "Atención") {
     if (txtTitulo) txtTitulo.textContent = titulo;
     if (txtMensaje) txtMensaje.textContent = mensaje;
 
-    if (icono) {
-        if (titulo.toLowerCase().includes('éxito') || titulo.toLowerCase().includes('recibida') || titulo.toLowerCase().includes('creado')) {
-            icono.textContent = '✅';
-        } else {
-            icono.textContent = '⚠️';
-        }
+   if (icono) {
+        const tituloTexto = titulo.toLowerCase();
+
+        const esExito =
+            tituloTexto.includes('éxito') ||
+            tituloTexto.includes('exito') ||
+            tituloTexto.includes('recibida') ||
+            tituloTexto.includes('creado');
+
+        const imagen = document.createElement('img');
+
+        imagen.src = esExito
+            ? '/Controlpass-repo/css/imagenes/exito.jpg'
+            : '/Controlpass-repo/css/imagenes/error.jpg';
+
+        imagen.alt = '';
+        imagen.width = 65;
+        imagen.height = 65;
+
+        imagen.style.objectFit = 'contain';
+        imagen.style.display = 'block';
+        imagen.style.margin = '0 auto';
+
+        icono.replaceChildren(imagen);
     }
 
-    if (modal) {
-        modal.classList.remove('modal-hidden');
-        modal.style.setProperty('display', 'flex', 'important');
+        if (modal) {
+            modal.classList.remove('modal-hidden');
+            modal.style.setProperty('display', 'flex', 'important');
+        }
     }
-}
 
 function cerrarAlertaCustom() {
     const modal = document.getElementById('modal-alerta');

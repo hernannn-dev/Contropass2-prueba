@@ -504,14 +504,44 @@ async function guardarUsuario(e) {
         estado: nuevoEstado
     };
 
-    const endpoint = id ? '../api/usuarios/editar.php' : '../api/usuarios/crear.php';
     
+    const endpoint = id
+        ? '../api/usuarios/editar.php'
+        : '../api/usuarios/crear.php';
+
     try {
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+
+        // Obtener token CSRF al crear y editar usuarios
+        {
+            const respuestaToken = await fetch('../api/obtener_csrf.php', {
+                method: 'GET',
+                credentials: 'same-origin',
+                cache: 'no-store'
+            });
+
+            if (!respuestaToken.ok) {
+                throw new Error('No se pudo obtener el token CSRF.');
+            }
+
+            const datosToken = await respuestaToken.json();
+
+            if (!datosToken.csrf_token) {
+                throw new Error('El servidor no devolvió un token CSRF válido.');
+            }
+
+            headers['X-CSRF-Token'] = datosToken.csrf_token;
+        }
+
         const respuesta = await fetch(endpoint, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            credentials: 'same-origin',
+            headers: headers,
             body: JSON.stringify(datos)
         });
+
 
         const res = await respuesta.json();
 

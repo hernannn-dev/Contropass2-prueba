@@ -1,80 +1,28 @@
-
 <?php
-// config/conexion.php
-// Conexion MySQL compatible con XAMPP y Railway.
-
-date_default_timezone_set('America/Bogota');
-
-$enRailway = getenv('RAILWAY_ENVIRONMENT') !== false;
-
-if ($enRailway) {
-
-    // BASE DE DATOS EN RAILWAY
-    $host = getenv('MYSQLHOST');
-    $port = getenv('MYSQLPORT') ?: '3306';
-    $base_datos = getenv('MYSQLDATABASE');
-    $usuario = getenv('MYSQLUSER');
-    $clave = getenv('MYSQLPASSWORD');
-
-    if (!$host || !$base_datos || !$usuario || $clave === false) {
-        error_log('ControlPass: faltan variables MySQL de Railway.');
-        http_response_code(500);
-        exit('Configuracion de base de datos incompleta.');
-    }
-
-} else {
-
-    // BASE DE DATOS LOCAL - XAMPP
-    $host = getenv('LOCAL_DB_HOST') ?: 'localhost';
-    $port = getenv('LOCAL_DB_PORT') ?: '3307';
-    $base_datos = getenv('LOCAL_DB_NAME') ?: 'controlpass_db';
-    $usuario = getenv('LOCAL_DB_USER') ?: 'root';
-
-    $clave = getenv('LOCAL_DB_PASSWORD');
-
-    if ($clave === false) {
-        $clave = '';
-    }
-}
+// =============================================================
+// CONEXIÓN A MYSQL MEDIANTE PDO
+// ⚠️ Este archivo está en .gitignore. NO lo subas al repositorio.
+// =============================================================
+$host       = "localhost";
+$port       = "3306";           // Ajusta a 3308 si tu MySQL local usa ese puerto
+$base_datos = "controlpass_db";
+$usuario    = "root";
+$clave      = "TU_CONTRASEÑA_LOCAL";  // Pon aquí la tuya
 
 try {
-
     $dsn = "mysql:host=$host;port=$port;dbname=$base_datos;charset=utf8mb4";
-
-    $conexion = new PDO(
-        $dsn,
-        $usuario,
-        $clave,
-        [
-            PDO::ATTR_PERSISTENT => true,
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES => false
-        ]
-    );
-
-    // Zona horaria MySQL Colombia
-    $conexion->exec("SET time_zone = '-05:00'");
-
-    // Compatibilidad con los modulos existentes
-    $pdo = $conexion;
-
+    $conexion = new PDO($dsn, $usuario, $clave, [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES   => false,
+    ]);
+    $pdo = $conexion;  // Alias para compatibilidad con scripts que usan $pdo
 } catch (PDOException $e) {
-
-    error_log(
-        'ControlPass: error de conexion PDO: ' .
-        $e->getMessage()
-    );
-
-    if (!headers_sent()) {
-        http_response_code(500);
-        header('Content-Type: application/json; charset=UTF-8');
-    }
-
+    header('Content-Type: application/json; charset=UTF-8');
+    http_response_code(500);
     echo json_encode([
-        'estado' => 'error',
-        'mensaje' => 'No se pudo conectar con la base de datos.'
+        'estado'  => 'error',
+        'mensaje' => 'Error crítico al conectar con la base de datos: ' . $e->getMessage()
     ], JSON_UNESCAPED_UNICODE);
-
-    exit;
+    exit();
 }

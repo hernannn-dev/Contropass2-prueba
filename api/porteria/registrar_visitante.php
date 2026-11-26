@@ -49,9 +49,9 @@ try {
         if ($stmtSerial->rowCount() > 0) {
             http_response_code(400);
             echo json_encode([
-                'estado' => 'serial_duplicado', 
-                'mensaje' => "El equipo con serial '{$serial_equipo}' ya se encuentra registrado y activo dentro de las instalaciones con otro visitante."
-            ], JSON_UNESCAPED_UNICODE);
+            'estado' => 'serial_duplicado',
+            'mensaje' => 'Este equipo ya se encuentra registrado y activo dentro de las instalaciones con otro visitante.'
+        ], JSON_UNESCAPED_UNICODE);
             exit;
         }
     }
@@ -80,7 +80,13 @@ try {
     echo json_encode(['estado' => 'exito', 'mensaje' => 'Ingreso registrado correctamente.'], JSON_UNESCAPED_UNICODE);
 
 } catch (PDOException $e) {
+    error_log('Error al registrar visitante: ' . $e->getMessage());
+
     http_response_code(500);
-    echo json_encode(['estado' => 'error', 'mensaje' => 'Error de base de datos: ' . $e->getMessage()], JSON_UNESCAPED_UNICODE);
+
+    echo json_encode([
+        'estado' => 'error',
+        'mensaje' => 'No fue posible registrar el visitante. Intente nuevamente.'
+    ], JSON_UNESCAPED_UNICODE);
 }
 ?>

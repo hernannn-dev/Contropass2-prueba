@@ -1,17 +1,10 @@
 <?php
-// =============================================================
-// SISTEMA DE SEGURIDAD ESTRICTO - CONTROLPASS SENA
-// Ubicación: api/seguridad.php
-// =============================================================
+
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-/**
- * 🟢 BLINDAJE DE VISTAS (HTML/PHP):
- * Soporta un rol único o un array de roles permitidos.
- */
 function protegerVistaHtml($rolesPermitidos) {
     $idUsuario = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0);
     $rolId = isset($_SESSION['rol_id']) ? intval($_SESSION['rol_id']) : 0;
@@ -61,7 +54,8 @@ function validarAccesoApi($requiereAdmin = false) {
     // Excepción total para exportaciones, reportes o archivos Excel
     $scriptActual = basename($_SERVER['PHP_SELF']);
     $esExportacion = (strpos($scriptActual, 'exportar') !== false || strpos($scriptActual, 'excel') !== false || strpos($scriptActual, 'reporte') !== false);
-
+    $requiereAdmin = $requiereAdmin || $esExportacion;
+    
     if (!$esExportacion) {
         // Evitar acceso directo desde la barra del navegador a las APIs
         $acceptHeader = $_SERVER['HTTP_ACCEPT'] ?? '';
@@ -73,10 +67,7 @@ function validarAccesoApi($requiereAdmin = false) {
             }
             exit(); 
         }
-    } else {
-        // Si es una petición legítima de exportación, omitimos restricciones estrictas de navegador
-        return;
-    }
+    } 
 
     // Validación de sesión activa para peticiones del sistema (Fetch/AJAX)
     $idUsuario = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0);
@@ -91,7 +82,10 @@ function validarAccesoApi($requiereAdmin = false) {
         exit();
     }
 
-    if ($requiereAdmin && $rolId !== 1 && $rolId !== 2) {
+   if (
+        ($esExportacion && $rolId !== 1) ||
+        ($requiereAdmin && !$esExportacion && $rolId !== 1 && $rolId !== 2)
+    ) {
         if (!headers_sent()) {
             http_response_code(403);
             header('Content-Type: application/json; charset=utf-8');

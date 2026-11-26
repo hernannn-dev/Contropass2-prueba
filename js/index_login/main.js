@@ -99,11 +99,29 @@ function mostrarAlerta(mensaje, titulo = "Atención") {
     if (txtMensaje) txtMensaje.textContent = mensaje;
 
     if (icono) {
-        if (titulo.toLowerCase().includes('éxito') || titulo.toLowerCase().includes('exito')) {
-            icono.textContent = '✅';
-        } else {
-            icono.textContent = '⚠️';
-        }
+        const tituloTexto = titulo.toLowerCase();
+
+        const esExito =
+            tituloTexto.includes('éxito') ||
+            tituloTexto.includes('exito') ||
+            tituloTexto.includes('recibida') ||
+            tituloTexto.includes('correctamente');
+
+        const imagen = document.createElement('img');
+
+        imagen.src = esExito
+            ? 'css/imagenes/exito.jpg'
+            : 'css/imagenes/error.jpg';
+
+        imagen.alt = esExito
+            ? 'Operación exitosa'
+            : 'Error';
+
+        imagen.style.width = '65px';
+        imagen.style.height = '65px';
+        imagen.style.objectFit = 'contain';
+
+        icono.replaceChildren(imagen);
     }
 
     if (modal) {

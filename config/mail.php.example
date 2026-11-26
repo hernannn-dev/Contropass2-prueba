@@ -1,83 +1,35 @@
-
 <?php
-// config/mail.php
-// Configuracion de correo ControlPass - Brevo
-
+// =============================================================
+// CONFIGURACIÓN DE CORREO CON PHPMailer
+// ⚠️ Este archivo está en .gitignore. NO lo subas al repositorio.
+// =============================================================
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Cargar Composer
 require_once __DIR__ . '/../vendor/autoload.php';
 
-function enviarCorreo(
-    $destinatario,
-    $nombreDestinatario,
-    $asunto,
-    $cuerpoHtml
-) {
-
+function enviarCorreo($destinatario, $nombreDestinatario, $asunto, $cuerpoHTML)
+{
     $mail = new PHPMailer(true);
-
     try {
-
-        // CREDENCIALES DESDE VARIABLES DE ENTORNO
-        $usuarioSMTP = getenv('SMTP_USER');
-        $claveSMTP = getenv('SMTP_PASSWORD');
-        $remitente = getenv('SMTP_FROM_EMAIL');
-
-        if (!$usuarioSMTP || !$claveSMTP || !$remitente) {
-            error_log('ControlPass: faltan variables SMTP.');
-            return false;
-        }
-
-        // CONFIGURACION SMTP DE BREVO
         $mail->isSMTP();
-
-        $mail->Host = getenv('SMTP_HOST')
-            ?: 'smtp-relay.brevo.com';
-
-        $mail->SMTPAuth = true;
-
-        $mail->Username = $usuarioSMTP;
-        $mail->Password = $claveSMTP;
-
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'soporte.controlpass.sena.cidt@gmail.com';
+        $mail->Password   = 'CONTRASEÑA_DE_APLICACION';  // Pídela al líder
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
+        $mail->CharSet    = 'UTF-8';
 
-        $mail->Port = (int) (
-            getenv('SMTP_PORT') ?: 587
-        );
-
-        // REMITENTE
-        $mail->setFrom(
-            $remitente,
-            getenv('SMTP_FROM_NAME') ?: 'ControlPass SENA CIDT'
-        );
-
-        // DESTINATARIO
-        $mail->addAddress(
-            $destinatario,
-            $nombreDestinatario
-        );
-
-        // CONTENIDO DEL CORREO
+        $mail->setFrom('soporte.controlpass.sena.cidt@gmail.com', 'ControlPass - SENA CIDT');
+        $mail->addAddress($destinatario, $nombreDestinatario);
         $mail->isHTML(true);
-        $mail->CharSet = 'UTF-8';
-
         $mail->Subject = $asunto;
-        $mail->Body = $cuerpoHtml;
-
-        // ENVIAR CORREO
+        $mail->Body    = $cuerpoHTML;
         $mail->send();
-
         return true;
-
     } catch (Exception $e) {
-
-        error_log(
-            'ControlPass: error PHPMailer: ' .
-            $mail->ErrorInfo
-        );
-
+        error_log('Error PHPMailer: ' . $mail->ErrorInfo);
         return false;
     }
 }

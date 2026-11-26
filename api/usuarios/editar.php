@@ -3,13 +3,57 @@
 ini_set('display_errors', 0);
 error_reporting(0);
 
-header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
+
+
+ // Permitir únicamente solicitudes POST
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    header('Allow: POST');
+
+    echo json_encode([
+        'estado' => 'error',
+        'mensaje' => 'Método no permitido. Utiliza POST.'
+    ], JSON_UNESCAPED_UNICODE);
+
+    exit;
+}
+
 
 // 🟢 Blindaje de seguridad: Exigir sesión activa y permisos administrativos
 require_once __DIR__ . '/../seguridad.php';
 validarAccesoApi();
+
+
+// Validación exclusiva del Superadministrador
+if ((int)($_SESSION['rol_id'] ?? 0) !== 1) {
+    http_response_code(403);
+
+    echo json_encode([
+        'estado' => 'error',
+        'mensaje' => 'Acceso denegado. Solo el Superadministrador puede modificar usuarios.'
+    ], JSON_UNESCAPED_UNICODE);
+
+    exit;
+}
+
+
+
+ // Protección CSRF para la edición de usuarios
+require_once __DIR__ . '/../csrf.php';
+
+if (!validarTokenCSRF()) {
+    http_response_code(403);
+
+    echo json_encode([
+        'estado' => 'error',
+        'mensaje' => 'Token CSRF inválido o ausente. Recarga la página e inténtalo nuevamente.'
+    ], JSON_UNESCAPED_UNICODE);
+
+    exit;
+}
+
 
 require_once '../../config/conexion.php';
 
@@ -37,11 +81,35 @@ if (!empty($datos['id']) && !empty($datos['documento']) && !empty($datos['nombre
         $rol_id         = (int)$datos['rol_id'];
         $estado         = trim($datos['estado']);
 
-        $stmtCheck = $conexion->prepare("SELECT rol_id, estado, documento FROM usuarios WHERE id = :id");
+        
+        // Iniciar la transacción antes de consultar los permisos
+        $conexion->beginTransaction();
+
+        // Bloquear las filas de los Superadministradores
+        // para serializar las operaciones de edición.
+        $stmtAdmins = $conexion->query(
+            "SELECT id
+            FROM usuarios
+            WHERE rol_id = 1
+            ORDER BY id
+            FOR UPDATE"
+        );
+
+        $stmtAdmins->fetchAll(PDO::FETCH_COLUMN);
+
+        // Consultar y bloquear el usuario que se va a editar
+        $stmtCheck = $conexion->prepare(
+            "SELECT rol_id, estado, documento
+            FROM usuarios
+            WHERE id = :id
+            FOR UPDATE"
+        );
+
         $stmtCheck->execute([':id' => $id]);
         $usuarioOriginal = $stmtCheck->fetch(PDO::FETCH_ASSOC);
 
         if (!$usuarioOriginal) {
+            $conexion->rollBack();
             http_response_code(404);
             echo json_encode(["estado" => "error", "mensaje" => "El usuario no existe en el sistema."], JSON_UNESCAPED_UNICODE);
             exit;
@@ -58,6 +126,7 @@ if (!empty($datos['id']) && !empty($datos['documento']) && !empty($datos['nombre
                 $totalActivos = $stmtCount->fetchColumn();
 
                 if ($totalActivos <= 1) {
+                    $conexion->rollBack();
                     http_response_code(403);
                     echo json_encode([
                         "estado" => "error", 
@@ -72,6 +141,7 @@ if (!empty($datos['id']) && !empty($datos['documento']) && !empty($datos['nombre
 
         if ($rol_id === 3) {
             if (empty($fichaRaw)) {
+                $conexion->rollBack();
                 http_response_code(400);
                 echo json_encode(["estado" => "error", "mensaje" => "El número de ficha es obligatorio para un aprendiz."], JSON_UNESCAPED_UNICODE);
                 exit();
@@ -82,8 +152,12 @@ if (!empty($datos['id']) && !empty($datos['documento']) && !empty($datos['nombre
             $fichaData = $stmtFicha->fetch(PDO::FETCH_ASSOC);
 
             if (!$fichaData) {
-                http_response_code(400);
-                echo json_encode(["estado" => "error", "mensaje" => "La ficha {$fichaRaw} no existe en el sistema. Debe registrarla primero."], JSON_UNESCAPED_UNICODE);
+                $conexion->rollBack();
+                    http_response_code(400);
+                    echo json_encode([
+                    "estado" => "error",
+                    "mensaje" => "La ficha indicada no existe en el sistema. Debe registrarla primero."
+                ], JSON_UNESCAPED_UNICODE);
                 exit();
             }
 
@@ -142,7 +216,6 @@ if (!empty($datos['id']) && !empty($datos['documento']) && !empty($datos['nombre
             $actualizarFoto = true;
         }
 
-        $conexion->beginTransaction();
 
         $updateFields = "tipo_documento = :tipo_doc, documento = :doc, nombres = :nom, apellidos = :ape, 
                          correo = :cor, telefono = :tel, ficha = :ficha, jornada = :jornada, programa = :prog, 
@@ -163,6 +236,7 @@ if (!empty($datos['id']) && !empty($datos['documento']) && !empty($datos['nombre
             $tieneEspecial = preg_match('/[\W_]/', $claveRecibida);
 
             if (!$minLargo || !$tieneMayuscula || !$tieneMinuscula || !$tieneNumero || !$tieneEspecial) {
+                $conexion->rollBack();
                 http_response_code(400);
                 echo json_encode([
                     "estado" => "error",
@@ -231,38 +305,67 @@ if (!empty($datos['id']) && !empty($datos['documento']) && !empty($datos['nombre
         http_response_code(200);
         echo json_encode(["estado" => "exito", "mensaje" => "Usuario actualizado correctamente."], JSON_UNESCAPED_UNICODE);
 
-    } catch (Exception $e) {
-        if ($conexion->inTransaction()) {
-            $conexion->rollBack();
-        }
-        if (!empty($archivoFotoNuevo) && is_file($archivoFotoNuevo)) {
-            unlink($archivoFotoNuevo);
-        }
+    
+} catch (Exception $e) {
 
-        // 🟢 Traducción amigable de errores de base de datos (Duplicidad de correo o documento)
-        $mensajeAmigable = "Error al actualizar en la base de datos: " . $e->getMessage();
-        $errorInfo = method_exists($e, 'errorInfo') ? $e->errorInfo : null;
-
-        if ($e->getCode() == '23000' || (is_array($errorInfo) && isset($errorInfo[1]) && $errorInfo[1] == 1062) || strpos(strtolower($e->getMessage()), 'duplicate') !== false) {
-            $errorMsg = strtolower($e->getMessage());
-            
-            if (strpos($errorMsg, 'correo') !== false) {
-                $mensajeAmigable = "El correo electrónico ingresado ya se encuentra registrado por otro usuario.";
-            } elseif (strpos($errorMsg, 'documento') !== false || strpos($errorMsg, 'primary') !== false) {
-                $mensajeAmigable = "El número de documento de identidad ya pertenece a otra cuenta existente.";
-            } else {
-                $mensajeAmigable = "Ya existe un registro con esta información en el sistema.";
-            }
-            
-            http_response_code(400);
-        } else {
-            http_response_code(500);
-        }
-
-        echo json_encode(["estado" => "error", "mensaje" => $mensajeAmigable], JSON_UNESCAPED_UNICODE);
+    // Revertir la transacción si continúa activa
+    if ($conexion->inTransaction()) {
+        $conexion->rollBack();
     }
-} else {
-    http_response_code(400);
-    echo json_encode(["estado" => "error", "mensaje" => "Faltan datos obligatorios para realizar la actualización."], JSON_UNESCAPED_UNICODE);
-}
+
+    // Eliminar la fotografía nueva si ocurrió un error
+    if (!empty($archivoFotoNuevo) && is_file($archivoFotoNuevo)) {
+        unlink($archivoFotoNuevo);
+    }
+
+    // Registrar el error técnico únicamente en el servidor
+    error_log("[ControlPass][usuarios/editar.php] " . $e->getMessage());
+
+    // Mensaje seguro por defecto
+    $mensajeAmigable = "No se pudo actualizar el usuario. Inténtalo nuevamente.";
+    $codigoHttp = 500;
+
+    $errorInfo = ($e instanceof PDOException) ? $e->errorInfo : null;
+    $codigoMySQL = is_array($errorInfo) ? (int)($errorInfo[1] ?? 0) : 0;
+    $codigoSQL = (string)$e->getCode();
+
+    // Registro duplicado: documento o correo
+    if ($codigoSQL === '23000' || $codigoMySQL === 1062) {
+
+        $errorMsg = strtolower($e->getMessage());
+
+        if (strpos($errorMsg, 'correo') !== false) {
+            $mensajeAmigable = "El correo electrónico ingresado ya se encuentra registrado por otro usuario.";
+        } elseif (
+            strpos($errorMsg, 'documento') !== false ||
+            strpos($errorMsg, 'primary') !== false
+        ) {
+            $mensajeAmigable = "El número de documento de identidad ya pertenece a otra cuenta existente.";
+        } else {
+            $mensajeAmigable = "Ya existe un registro con esta información en el sistema.";
+        }
+
+        $codigoHttp = 400;
+
+    } elseif ($codigoMySQL === 1205) {
+
+        // Tiempo de espera agotado por bloqueo de MySQL
+        $mensajeAmigable = "El usuario está siendo procesado por otra operación. Espera unos momentos e inténtalo nuevamente.";
+        $codigoHttp = 503;
+    }
+
+    http_response_code($codigoHttp);
+    echo json_encode([
+        "estado" => "error",
+        "mensaje" => $mensajeAmigable
+    ], JSON_UNESCAPED_UNICODE);
+
+    } // Cierra el catch
+    } else {
+        http_response_code(400);
+        echo json_encode([
+            "estado" => "error",
+            "mensaje" => "Faltan datos obligatorios para realizar la actualización."
+        ], JSON_UNESCAPED_UNICODE);
+    }
 ?>

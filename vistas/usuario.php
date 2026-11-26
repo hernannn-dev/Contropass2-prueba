@@ -356,10 +356,10 @@ $cedula_limpia = "";
     </div>
 
     <!-- Enlaces a los scripts modulares correctos -->
-    <script src="../js/usurios/mis_datos.js?v=3.0" defer></script>
-    <script src="../js/usurios/gestion_elementos.js?v=3.0" defer></script>
-    <script src="../js/usurios/registrar_elementos.js?v=3.0" defer></script>
-    <script src="../js/usurios/codigo-barras.js?v=4.0" defer></script>
+    <script src="../js/usuarios/mis_datos.js?v=3.0" defer></script>
+    <script src="../js/usuarios/gestion_elementos.js?v=3.0" defer></script>
+    <script src="../js/usuarios/registrar_elementos.js?v=3.0" defer></script>
+    <script src="../js/usuarios/codigo-barras.js?v=4.0" defer></script>
 
 </body>
 </html>
